@@ -20,7 +20,7 @@ export function receiveAllProducts(products, carts = List()) {
 
 export function getAllProducts() {
     return (dispatch, getState) => {
-        if (!localStore.get('shop') || typeof localStore.get('shop').goods.products === 'undefined') {
+        if (!localStore.get('shop')) {
             return fetch('')
                 .then(() => {
                     let products = List([
