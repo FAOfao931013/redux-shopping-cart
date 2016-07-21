@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/entry.js",
   "dependencies": {
-    "autoprefixer-loader": "^3.2.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.10.1",
     "css-loader": "^0.23.1",
