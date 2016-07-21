@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 
 const {Map} = Immutable;
 
-export default (state = {}, action) => {
+export default (state = Map(), action) => {
     switch (action.type) {
         case 'ALLPRODUCTS':
             return Map({
@@ -23,12 +23,14 @@ export default (state = {}, action) => {
                         .set('data', data)
                 }
             );
-        //case 'CALCULATE':
-        //    return Object.assign({}, state, {
-        //        totalPrice: calculatePrice(action.data),
-        //        totalNumber: calculateNumber(action.data),
-        //        text: action.text
-        //    });
+        case 'CALCULATE':
+            return state.update(
+                newState => {
+                    return newState
+                        .set('totalPrice', calculatePrice(newState.get('data')))
+                        .set('totalNumber', calculateNumber(newState.get('data')))
+                }
+            );
         default:
             return state;
     }
@@ -67,20 +69,21 @@ export function addToCart(state, product, count = 1) {
     );
 }
 
-function calculatePrice(data = []) {
+function calculatePrice(data = Map()) {
     let totalPrice = 0;
 
-    data.forEach(product => {
-        totalPrice += product.count * product.price;
+    data.map(product => {
+        totalPrice += product.get('count') * product.get('price');
     });
+
     return totalPrice;
 }
 
-function calculateNumber(data = []) {
+function calculateNumber(data = Map()) {
     let totalNumber = 0;
 
-    data.forEach(product => {
-        totalNumber += product.count;
+    data.map(product => {
+        totalNumber += product.get('count');
     });
     return totalNumber;
 }

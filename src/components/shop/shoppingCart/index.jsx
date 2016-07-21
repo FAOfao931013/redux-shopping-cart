@@ -44,7 +44,8 @@ class ShoppingCart extends React.Component {
                     })
                 }
                 {
-                    data ?
+                    data &&
+                    data.size ?
                         <div>
                             <div>总共:{totalNumber}件商品</div>
                             <div>总价:{totalPrice}元</div>
@@ -59,8 +60,8 @@ class ShoppingCart extends React.Component {
 function mapStateToProps(state) {
     return {
         data: Map.isMap(state.carts) ? state.carts.get('data') : null,
-        totalPrice: state.carts.totalPrice,
-        totalNumber: state.carts.totalNumber
+        totalPrice: Map.isMap(state.carts) ? state.carts.get('totalPrice') : null,
+        totalNumber: Map.isMap(state.carts) ? state.carts.get('totalNumber') : null
     };
 }
 

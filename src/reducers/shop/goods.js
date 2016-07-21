@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 
 const {Map} = Immutable;
 
-export default (state = {}, action) => {
+export default (state = Map(), action) => {
     switch (action.type) {
         case 'ALLPRODUCTS':
             return Map({

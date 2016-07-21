@@ -8,19 +8,9 @@ const {Map, List} = Immutable;
 
 const CALCULATE = 'CALCULATE';
 
-export function calculateHandler(data) {
+export function calculate() {
     return {
         type: CALCULATE,
-        data: data,
         text: 'calculate cart'
-    }
-}
-
-export function calculate() {
-    return (dispatch, getState) => {
-
-        //const carts = Map.isMap(getState().carts) ? getState().carts : localStorageToImmutable(localStore.get('shop').carts);
-
-        //dispatch(calculateHandler(carts));
     }
 }
