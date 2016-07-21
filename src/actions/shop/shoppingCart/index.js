@@ -7,10 +7,19 @@ import Immutable from 'immutable';
 const {Map, List} = Immutable;
 
 const CALCULATE = 'CALCULATE';
+const DELETEPRODUCT = 'DELETEPRODUCT';
 
 export function calculate() {
     return {
         type: CALCULATE,
         text: 'calculate cart'
+    }
+}
+
+export function deleteProduct(productId) {
+    return {
+        type: DELETEPRODUCT,
+        id: productId,
+        text: 'delete product from carts'
     }
 }

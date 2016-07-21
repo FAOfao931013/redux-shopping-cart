@@ -4,31 +4,46 @@ const {Map} = Immutable;
 
 export default (state = Map(), action) => {
     switch (action.type) {
-        case 'ALLPRODUCTS':
+        case'ALLPRODUCTS':
             return Map({
                 products: action.products,
                 data: action.carts,
                 text: action.text
             });
-        case 'ADDTOCART':
+        case'ADDTOCART':
             return state.update(
                 newState => {
-                    const index = findById(action.id, state.get('products'));
 
                     const oldData = newState.get('products');
 
-                    const data = addToCart(newState.get('data'), oldData.get(index));
+                    const index = findById(action.id, oldData);
+
+                    const newData = addToCart(newState.get('data'), oldData.get(index));
 
                     return newState
-                        .set('data', data)
+                        .set('data', newData)
                 }
             );
-        case 'CALCULATE':
+        case'CALCULATE':
             return state.update(
                 newState => {
                     return newState
                         .set('totalPrice', calculatePrice(newState.get('data')))
                         .set('totalNumber', calculateNumber(newState.get('data')))
+                }
+            );
+        case'DELETEPRODUCT':
+            return state.update(
+                newState => {
+
+                    const oldData = newState.get('data');
+
+                    const index = findById(action.id, oldData);
+
+                    const newData = deleteProduct(oldData, index);
+
+                    return newState
+                        .set('data', newData)
                 }
             );
         default:
@@ -88,3 +103,10 @@ function calculateNumber(data = Map()) {
     return totalNumber;
 }
 
+function deleteProduct(data, index) {
+    return data.update(
+        newData => {
+            return newData.delete(index);
+        }
+    );
+}

@@ -26,6 +26,23 @@ export default (state = Map(), action) => {
                         .set('products', newData)
                 }
             );
+        case 'BACKTOGOODS':
+            return state.update(
+                newState => {
+                    const index = findById(action.id, state.get('products'));
+
+                    const oldData = newState.get('products');
+
+                    const oldCount = oldData.get(index).get('count');
+
+                    const newItem = oldData.get(index).set('count', oldCount + action.count);
+
+                    const newData = oldData.set(index, newItem);
+
+                    return newState
+                        .set('products', newData)
+                }
+            );
         default:
             return state;
     }

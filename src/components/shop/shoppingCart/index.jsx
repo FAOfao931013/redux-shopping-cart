@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { calculate } from 'actions/shop/shoppingCart';
-import { getAllProducts} from 'actions/shop/shopGoods';
+import { calculate, deleteProduct } from 'actions/shop/shoppingCart';
+import { getAllProducts, backToGoods } from 'actions/shop/shopGoods';
 import Immutable from 'immutable';
 import './style.less';
 
@@ -22,7 +22,8 @@ class ShoppingCart extends React.Component {
         let {
             data,
             totalPrice,
-            totalNumber
+            totalNumber,
+            deleteProduct
             } = this.props;
 
         //console.log(data);
@@ -39,6 +40,8 @@ class ShoppingCart extends React.Component {
                                 <div>商品名称:{product.get('name')}</div>
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
+                                <button onClick={() => deleteProduct(product.get('id'),product.get('count'))}>删除
+                                </button>
                             </div>
                         );
                     })
@@ -70,6 +73,11 @@ function mapDispatchToProps(dispatch, ownProps) {
         getAllProducts() {
             dispatch(getAllProducts());
             dispatch(calculate());
+        },
+        deleteProduct(productId, productCount) {
+            dispatch(deleteProduct(productId));
+            dispatch(calculate());
+            dispatch(backToGoods(productId, productCount))
         }
     }
 }

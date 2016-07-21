@@ -8,6 +8,7 @@ const {List, Map} = Immutable;
 
 const ALLPRODUCTS = 'ALLPRODUCTS';
 const ADDTOCART = 'ADDTOCART';
+const BACKTOGOODS = 'BACKTOGOODS';
 
 export function receiveAllProducts(products, carts = List()) {
     return {
@@ -58,5 +59,14 @@ export function addToCart(productId) {
         type: ADDTOCART,
         id: productId,
         text: 'add product to cart'
+    }
+}
+
+export function backToGoods(productId, productCount) {
+    return {
+        type: BACKTOGOODS,
+        id: productId,
+        count: productCount,
+        text: 'back product to Goods'
     }
 }
