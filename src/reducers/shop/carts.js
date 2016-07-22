@@ -12,17 +12,7 @@ export default (state = Map(), action) => {
             });
         case'ADDTOCART':
             return state.update(
-                newState => {
-
-                    const oldData = newState.get('products');
-
-                    const index = findById(action.id, oldData);
-
-                    const newData = addToCart(newState.get('data'), oldData.get(index));
-
-                    return newState
-                        .set('data', newData)
-                }
+                newState => newState.set('data', carts(newState, action))
             );
         case'CALCULATE':
             return state.update(
@@ -34,34 +24,43 @@ export default (state = Map(), action) => {
             );
         case'DELETEPRODUCT':
             return state.update(
-                newState => {
-
-                    const oldData = newState.get('data');
-
-                    const index = findById(action.id, oldData);
-
-                    const newData = deleteProduct(oldData, index);
-
-                    return newState
-                        .set('data', newData)
-                }
+                newState => newState.set('data', carts(newState, action))
             );
         default:
             return state;
     }
 };
 
-export function findById(productId, data) {
+function carts(state = Map(), action) {
+    switch (action.type) {
+        case 'ADDTOCART':
+            const oldProducts = state.get('products');
+
+            const index = findById(action.id, oldProducts);
+
+            return addToCart(state.get('data'), oldProducts.get(index));
+        case 'DELETEPRODUCT':
+            const oldData = state.get('data');
+
+            return deleteProduct(oldData, findById(action.id, oldData));
+        default:
+            return state;
+    }
+}
+
+function findById(productId, data) {
     let _index;
+
     data.map((product, index) => {
         if (product.get('id') === productId) {
             _index = index;
         }
     });
+    
     return _index;
 }
 
-export function addToCart(state, product, count = 1) {
+function addToCart(state, product, count = 1) {
     if (typeof findById(product.get('id'), state) === 'undefined') {
         return state.update(
             newState => {
