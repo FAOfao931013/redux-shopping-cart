@@ -34,15 +34,21 @@ export default (state = Map(), action) => {
 function carts(state = Map(), action) {
     switch (action.type) {
         case 'ADDTOCART':
+        {
             const oldProducts = state.get('products');
 
             const index = findById(action.id, oldProducts);
 
             return addToCart(state.get('data'), oldProducts.get(index));
+        }
         case 'DELETEPRODUCT':
+        {
             const oldData = state.get('data');
 
-            return deleteProduct(oldData, findById(action.id, oldData));
+            const index = findById(action.id, oldData);
+
+            return deleteProduct(oldData, index);
+        }
         default:
             return state;
     }
@@ -56,7 +62,7 @@ function findById(productId, data) {
             _index = index;
         }
     });
-    
+
     return _index;
 }
 
