@@ -1,20 +1,28 @@
 import Immutable from 'immutable';
+import {
+    ALLPRODUCTS,
+    ADDTOCART,
+} from 'actions/shop/shopGoods';
+import {
+    CALCULATE,
+    DELETEPRODUCT,
+} from 'actions/shop/shoppingCart';
 
 const {Map} = Immutable;
 
 export default (state = Map(), action) => {
     switch (action.type) {
-        case'ALLPRODUCTS':
+        case ALLPRODUCTS:
             return Map({
                 products: action.products,
                 data: action.carts,
                 text: action.text
             });
-        case'ADDTOCART':
+        case ADDTOCART:
             return state.update(
                 newState => newState.set('data', carts(newState, action))
             );
-        case'CALCULATE':
+        case CALCULATE:
             return state.update(
                 newState => {
                     return newState
@@ -22,7 +30,7 @@ export default (state = Map(), action) => {
                         .set('totalNumber', calculateNumber(newState.get('data')))
                 }
             );
-        case'DELETEPRODUCT':
+        case DELETEPRODUCT:
             return state.update(
                 newState => newState.set('data', carts(newState, action))
             );
@@ -33,7 +41,7 @@ export default (state = Map(), action) => {
 
 function carts(state = Map(), action) {
     switch (action.type) {
-        case 'ADDTOCART':
+        case ADDTOCART:
         {
             const oldProducts = state.get('products');
 
@@ -41,7 +49,7 @@ function carts(state = Map(), action) {
 
             return addToCart(state.get('data'), oldProducts.get(index));
         }
-        case 'DELETEPRODUCT':
+        case DELETEPRODUCT:
         {
             const oldData = state.get('data');
 

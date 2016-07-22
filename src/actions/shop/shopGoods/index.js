@@ -6,9 +6,9 @@ import localStorageToImmutable from 'common/localStorageToImmutable';
 
 const {List, Map} = Immutable;
 
-const ALLPRODUCTS = 'ALLPRODUCTS';
-const ADDTOCART = 'ADDTOCART';
-const BACKTOGOODS = 'BACKTOGOODS';
+export const ALLPRODUCTS = 'ALLPRODUCTS';
+export const ADDTOCART = 'ADDTOCART';
+export const BACKTOGOODS = 'BACKTOGOODS';
 
 export function receiveAllProducts(products, carts = List()) {
     return {

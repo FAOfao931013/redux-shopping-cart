@@ -1,17 +1,27 @@
-export default (state = {number:0}, action) => {
+import Immutable from 'immutable';
+
+const {Map} = Immutable;
+
+export default (state = Map({number: 0}), action) => {
     switch (action.type) {
-        case 'ADD':
-            state.number += action.value;
-            return Object.assign({}, state, {
-                number: state.number,
-                text: action.text
-            });
-        case 'MINUS':
-            state.number += action.value;
-            return Object.assign({}, state, {
-                number: state.number,
-                text: action.text
-            });
+        case'ADD':
+            return state.update(
+                newState => newState
+                    .set('number', newState.get('number') + 1)
+                    .set('text', action.text)
+            );
+        case'MINUS':
+            return state.update(
+                newState => newState
+                    .set('number', newState.get('number') - 1)
+                    .set('text', action.text)
+            );
+        case'INITIALIZATION':
+            return state.update(
+                newState => newState
+                    .set('number', 0)
+                    .set('text', action.text)
+            );
         default:
             return state;
     }

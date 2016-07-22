@@ -6,8 +6,8 @@ import Immutable from 'immutable';
 
 const {Map, List} = Immutable;
 
-const CALCULATE = 'CALCULATE';
-const DELETEPRODUCT = 'DELETEPRODUCT';
+export const CALCULATE = 'CALCULATE';
+export const DELETEPRODUCT = 'DELETEPRODUCT';
 
 export function calculate() {
     return {
