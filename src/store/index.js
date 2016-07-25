@@ -6,11 +6,6 @@ import reducers from 'reducers';
 import localStore from 'localStore';
 import Immutable from 'immutable';
 
-const reduce = combineReducers({
-    ...reducers,
-    routing: routerReducer
-});
-
 const routeMiddleware = routerMiddleware(hashHistory);
 
 const middleware = [
@@ -18,7 +13,6 @@ const middleware = [
     routeMiddleware
 ];
 
-//初始化store
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 
 let store;
@@ -26,9 +20,9 @@ let store;
 const localShop = localStore.get('shop');
 
 if (localShop) {
-    store = createStoreWithMiddleware(reduce, localShop);
+    store = createStoreWithMiddleware(reducers, localShop);
 } else {
-    store = createStoreWithMiddleware(reduce);
+    store = createStoreWithMiddleware(reducers);
 }
 
 const history = syncHistoryWithStore(hashHistory, store);

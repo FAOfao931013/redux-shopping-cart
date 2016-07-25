@@ -3,12 +3,15 @@ import { push, go } from 'react-router-redux';
 import localStore from 'localStore';
 import Immutable from 'immutable';
 import localStorageToImmutable from 'common/localStorageToImmutable';
+import * as actionTypes from './actionTypes';
 
 const {List, Map} = Immutable;
 
-export const ALLPRODUCTS = 'ALLPRODUCTS';
-export const ADDTOCART = 'ADDTOCART';
-export const BACKTOGOODS = 'BACKTOGOODS';
+const {
+    ALLPRODUCTS,
+    ADDTOCART,
+    BACKTOGOODS
+    } = actionTypes;
 
 export function receiveAllProducts(products, carts = List()) {
     return {

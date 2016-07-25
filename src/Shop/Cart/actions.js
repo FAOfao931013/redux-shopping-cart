@@ -3,11 +3,14 @@ import { push, go } from 'react-router-redux';
 import localStore from 'localStore';
 import localStorageToImmutable from 'common/localStorageToImmutable';
 import Immutable from 'immutable';
+import * as actionTypes from './actionTypes';
+
+const {
+    CALCULATE,
+    DELETEPRODUCT,
+    } = actionTypes;
 
 const {Map, List} = Immutable;
-
-export const CALCULATE = 'CALCULATE';
-export const DELETEPRODUCT = 'DELETEPRODUCT';
 
 export function calculate() {
     return {

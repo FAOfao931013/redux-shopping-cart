@@ -1,12 +1,16 @@
 import Immutable from 'immutable';
-import {
+import * as actionTypes from './actionTypes';
+import goods from '../Goods/index';
+
+const {
     ALLPRODUCTS,
     ADDTOCART,
-} from 'actions/shop/shopGoods';
-import {
+    } =  goods.actionTypes;
+
+const {
     CALCULATE,
     DELETEPRODUCT,
-} from 'actions/shop/shoppingCart';
+    } = actionTypes;
 
 const {Map} = Immutable;
 

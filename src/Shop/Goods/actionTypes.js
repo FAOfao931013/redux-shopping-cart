@@ -1,0 +1,3 @@
+export const ALLPRODUCTS = 'ALLPRODUCTS';
+export const ADDTOCART = 'ADDTOCART';
+export const BACKTOGOODS = 'BACKTOGOODS';

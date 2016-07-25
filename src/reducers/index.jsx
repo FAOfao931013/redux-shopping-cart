@@ -1,9 +1,10 @@
-import * as countNumber from 'reducers/countNumber';
-import * as shop from 'reducers/shop';
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import goods from '../Shop/Goods';
+import cart from '../Shop/Cart';
 
-let reducers = Object.assign(
-    countNumber,
-    shop
-);
-
-export default reducers;
+export default combineReducers({
+    [goods.constants.NAME]: goods.reducer,
+    [cart.constants.NAME]: cart.reducer,
+    routing: routerReducer
+});

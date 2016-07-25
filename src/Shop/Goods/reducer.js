@@ -1,11 +1,13 @@
 import Immutable from 'immutable';
-import {
+import * as actionTypes from './actionTypes';
+
+const {Map} = Immutable;
+
+const {
     ALLPRODUCTS,
     ADDTOCART,
     BACKTOGOODS
-} from 'actions/shop/shopGoods';
-
-const {Map} = Immutable;
+    } = actionTypes;
 
 export default (state = Map(), action) => {
     switch (action.type) {
