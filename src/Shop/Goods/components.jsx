@@ -23,8 +23,6 @@ class shopGoods extends React.Component {
             gotoCart,
             } = this.props;
 
-        //console.log(data);
-
         return (
             <div className='shop-goods'>
                 {

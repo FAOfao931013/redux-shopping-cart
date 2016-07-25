@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
-import goods from '../Goods/index';
+import goods from 'src/Shop/Goods/index';
 
 const {
     ALLPRODUCTS,

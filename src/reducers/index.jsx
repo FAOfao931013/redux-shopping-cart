@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import goods from '../Shop/Goods';
-import cart from '../Shop/Cart';
+import goods from 'src/Shop/Goods';
+import cart from 'src/Shop/Cart';
 
 export default combineReducers({
     [goods.constants.NAME]: goods.reducer,

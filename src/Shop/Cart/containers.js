@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import shoppingCart from './components';
 import * as actions from './actions';
-import goods from '../Goods/index';
-import {getAllSelector} from './selectors';
+import goods from 'src/Shop/Goods/index';
+import { getAllSelector } from './selectors';
 
 const {
     getAllProducts,

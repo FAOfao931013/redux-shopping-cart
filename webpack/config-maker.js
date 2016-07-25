@@ -4,10 +4,9 @@ var path = require('path');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var paths = {
-    components: path.join(__dirname, '../src/components'),
+    src:path.join(__dirname, '../src'),
     store: path.join(__dirname, '../src/store'),
     reducers: path.join(__dirname, '../src/reducers'),
-    actions: path.join(__dirname, '../src/actions'),
     routes: path.join(__dirname, '../src/routes'),
     common: path.join(__dirname, '../src/common'),
     localStore: path.join(__dirname, '../node_modules/store/store.js')
@@ -53,9 +52,8 @@ var config = {
     resolve: {
         extensions: ['', '.js', '.jsx'],
         alias: {
-            'components': paths.components,
+            'src': paths.src,
             'store': paths.store,
-            'actions': paths.actions,
             'reducers': paths.reducers,
             'routes': paths.routes,
             'common': paths.common,

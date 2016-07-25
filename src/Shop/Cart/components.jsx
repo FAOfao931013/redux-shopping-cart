@@ -24,8 +24,6 @@ class ShoppingCart extends React.Component {
             deleteProduct
             } = this.props;
 
-        //console.log(data);
-
         return (
             <div className='shopping-cart'>
                 {
