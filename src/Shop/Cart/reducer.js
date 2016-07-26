@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
-import goods from 'src/Shop/Goods/index';
+import goods from 'src/Shop/goods/index';
 
 const {Map,List} = Immutable;
 
@@ -17,6 +17,8 @@ const {
 const initialState = Map({
     products: List(),
     data: List(),
+    totalPrice: 0,
+    totalNumber: 0,
     text: ''
 });
 

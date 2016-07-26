@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
 import ShoppingCart from './components';
 import * as actions from './actions';
-import goods from 'src/Shop/Goods/index';
+import goods from 'src/Shop/goods/index';
 import { getAllSelector } from './selectors';
 
 const {

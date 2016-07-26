@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router';
 import rootNode from './rootNode';
-import goods from 'src/Shop/Goods';
-import cart from 'src/Shop/Cart';
+import goods from 'src/Shop/goods';
+import cart from 'src/Shop/cart';
 
 let routes = (
     <div>
