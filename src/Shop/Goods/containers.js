@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import shopGoods from './components';
+import ShopGoods from './components';
 import * as actions from './actions';
 import {getProductsSelector} from './selectors';
 
@@ -32,4 +32,4 @@ function mapDispatchToProps(dispatch, ownProps) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(shopGoods);
+)(ShopGoods);

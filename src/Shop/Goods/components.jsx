@@ -5,9 +5,7 @@ import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import './style.less';
 
-const {Map} = Immutable;
-
-class shopGoods extends React.Component {
+class ShopGoods extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -57,4 +55,10 @@ class shopGoods extends React.Component {
     }
 }
 
-export default shopGoods;
+ShopGoods.propTypes = {
+    products: React.PropTypes.instanceOf(Immutable.List),
+    addToCart: React.PropTypes.func.isRequired,
+    gotoCart: React.PropTypes.func.isRequired
+};
+
+export default ShopGoods;

@@ -5,8 +5,6 @@ import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import './style.less';
 
-const {Map} = Immutable;
-
 class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +19,8 @@ class ShoppingCart extends React.Component {
             data,
             totalPrice,
             totalNumber,
-            deleteProduct
+            deleteProduct,
+            goBack
             } = this.props;
 
         return (
@@ -51,9 +50,18 @@ class ShoppingCart extends React.Component {
                         </div>
                         : <div>暂无商品</div>
                 }
+                <button onClick={goBack}>返回</button>
             </div>
         );
     }
 }
+
+ShoppingCart.propTypes = {
+    data: React.PropTypes.instanceOf(Immutable.List),
+    totalPrice: React.PropTypes.number,
+    totalNumber: React.PropTypes.number,
+    deleteProduct: React.PropTypes.func.isRequired,
+    goBack: React.PropTypes.func.isRequired
+};
 
 export default ShoppingCart;

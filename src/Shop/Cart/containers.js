@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import shoppingCart from './components';
+import { goBack } from 'react-router-redux';
+import ShoppingCart from './components';
 import * as actions from './actions';
 import goods from 'src/Shop/Goods/index';
 import { getAllSelector } from './selectors';
@@ -32,6 +33,9 @@ function mapDispatchToProps(dispatch, ownProps) {
             dispatch(deleteProduct(productId));
             dispatch(calculate());
             dispatch(backToGoods(productId, productCount))
+        },
+        goBack(){
+          dispatch(goBack());
         }
     }
 }
@@ -39,4 +43,4 @@ function mapDispatchToProps(dispatch, ownProps) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(shoppingCart);
+)(ShoppingCart);
