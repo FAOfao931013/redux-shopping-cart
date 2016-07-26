@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
 
-const {Map} = Immutable;
+const {Map,List} = Immutable;
 
 const {
     ALLPRODUCTS,
@@ -9,7 +9,12 @@ const {
     BACKTOGOODS
     } = actionTypes;
 
-export default (state = Map(), action) => {
+const initialState = Map({
+    products: List(),
+    text: ''
+});
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case ALLPRODUCTS:
             return Map({
