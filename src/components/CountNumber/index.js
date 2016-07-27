@@ -23,8 +23,6 @@ class CountNumber extends React.Component {
             number: _number
         });
 
-        console.log(_number);
-
         if (typeof this.props.onChange === 'function') {
             this.props.onChange(_number);
         }
@@ -46,10 +44,11 @@ class CountNumber extends React.Component {
     }
 
     componentWillReceiveProps(nextPros) {
-
-        this.setState({
-            number: this.state.number >= nextPros.max ? nextPros.max : this.state.number
-        });
+        if (nextPros.value !== this.state.number) {
+            this.setState({
+                number: nextPros.value
+            })
+        }
     }
 
     render() {
@@ -63,17 +62,15 @@ class CountNumber extends React.Component {
             max
             } = this.props;
 
-        console.log(number);
-
         return (
             <div className='countNumber'>
                 <button
-                    onClick={() => this._minusNumber()}
+                    onClick={this._minusNumber}
                     disabled={number<=min}>-
                 </button>
                 <div>{number}</div>
                 <button
-                    onClick={() => this._addNumber()}
+                    onClick={this._addNumber}
                     disabled={number>=max}>+
                 </button>
             </div>

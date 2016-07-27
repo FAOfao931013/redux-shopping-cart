@@ -48,13 +48,13 @@ function goods(state = Map(), action) {
 
             const oldCount = oldProducts.get(index).get('count');
 
-            const newItem = oldProducts.get(index).set('count', oldCount - action.count);
+            const newItem = oldProducts.get(index).set('count', oldCount - action.countNumber);
 
             const newCount = newItem.get('count');
 
             const oldCountNumber = newItem.get('countNumber');
 
-            const newCountNumber = oldCountNumber <= newCount ? oldCountNumber : newCount;
+            const newCountNumber = oldCountNumber <= newCount ? oldCountNumber : 0;
 
             const newProduct = newItem.set('countNumber', newCountNumber);
 

@@ -66,7 +66,7 @@ export function addToCart(productId, countNumber) {
     return {
         type: ADDTOCART,
         id: productId,
-        count: countNumber,
+        countNumber: countNumber,
         text: 'add product to cart'
     }
 }

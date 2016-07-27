@@ -1,7 +1,6 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
 import goods from 'src/Shop/goods/index';
-import countNumber from 'src/components/countNumber';
 
 const {Map,List} = Immutable;
 
@@ -32,7 +31,7 @@ export default (state = initialState, action) => {
                 text: action.text
             });
         case ADDTOCART:
-            if (action.count !== 0) {
+            if (action.countNumber !== 0) {
                 return state.update(
                     newState => newState.set('data', carts(newState, action))
                 );
@@ -64,7 +63,7 @@ function carts(state = Map(), action) {
 
             const index = findById(action.id, oldProducts);
 
-            return addToCart(state.get('data'), oldProducts.get(index), action.count);
+            return addToCart(state.get('data'), oldProducts.get(index), action.countNumber);
         }
         case DELETEPRODUCT:
         {

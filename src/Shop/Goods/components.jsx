@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
-//import './style.less';
+import './style.less';
 
 class ShopGoods extends React.Component {
     constructor(props) {
@@ -38,6 +38,7 @@ class ShopGoods extends React.Component {
                                 <CountNumber
                                     min='0'
                                     max={product.get('count')}
+                                    value={product.get('countNumber')}
                                     onChange={number => setCountNumber(product.get('id'),number)}/>
                                 {
                                     product.get('count') > 0 ?
