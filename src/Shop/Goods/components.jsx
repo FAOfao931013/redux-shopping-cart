@@ -36,7 +36,7 @@ class ShopGoods extends React.Component {
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
                                 <CountNumber
-                                    min='0'
+                                    min={0}
                                     max={product.get('count')}
                                     value={product.get('countNumber')}
                                     onChange={number => setCountNumber(product.get('id'),number)}/>

@@ -79,7 +79,13 @@ class CountNumber extends React.Component {
 }
 
 CountNumber.porpTypes = {
-    number: React.PropTypes.number
+    min: React.PropTypes.number,
+    max: React.PropTypes.number
+};
+
+CountNumber.defaultProps = {
+    max:99999,
+    min:0
 };
 
 export default CountNumber;
