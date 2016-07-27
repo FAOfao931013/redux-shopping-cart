@@ -11,7 +11,8 @@ const {
 
 function mapStateToProps(state) {
     return {
-        products: getProductsSelector(state).products
+        products: getProductsSelector(state).products,
+        countNumber: getProductsSelector(state).countNumber
     };
 }
 
@@ -20,8 +21,8 @@ function mapDispatchToProps(dispatch, ownProps) {
         getAllProducts() {
             dispatch(getAllProducts());
         },
-        addToCart(productId){
-            dispatch(addToCart(productId));
+        addToCart(productId, countNumber){
+            dispatch(addToCart(productId, countNumber));
         },
         gotoCart(){
             dispatch(push('/shop/cart'));

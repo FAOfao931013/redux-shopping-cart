@@ -36,12 +36,17 @@ class ShopGoods extends React.Component {
                                 <div>商品名称:{product.get('name')}</div>
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
-                                <CountNumber />
+                                <CountNumber
+                                    id={product.get('id')}
+                                    number={product.get('countNumber')}
+                                    min='0'
+                                    max={product.get('count')}/>
                                 {
                                     product.get('count') > 0 ?
                                         <div>
                                             <button
-                                                onClick={() => addToCart(product.get('id'))}>加入购物车
+                                                onClick={() => addToCart(product.get('id'),product.get('countNumber'))}>
+                                                加入购物车
                                             </button>
                                         </div>
                                         : <div>已售空</div>

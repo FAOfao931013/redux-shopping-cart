@@ -9,16 +9,25 @@ class CountNumber extends React.Component {
     render() {
 
         let {
+            id,
             number,
             addNumber,
-            minusNumber
+            minusNumber,
+            min,
+            max
             } = this.props;
 
         return (
             <div className='countNumber'>
-                <button onClick={minusNumber}>-</button>
+                <button
+                    onClick={() => minusNumber(id)}
+                    disabled={number<=min}>-
+                </button>
                 <div>{number}</div>
-                <button onClick={addNumber}>+</button>
+                <button
+                    onClick={() => addNumber(id)}
+                    disabled={number>=max}>+
+                </button>
             </div>
         )
     }

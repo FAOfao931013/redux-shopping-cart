@@ -8,25 +8,12 @@ const {
 
 const {Map} = Immutable;
 
-const initialState = Map({
-    number: 0,
-    text: 'countNumber'
-});
-
-export default (state = initialState, action) => {
+export default (state, action) => {
     switch (action.type) {
         case ADD:
-            return state.update(
-                newState => newState
-                    .set('number', newState.get('number') + 1)
-                    .set('text', action.text)
-            );
+            return state.get('countNumber') + action.value;
         case MINUS:
-            return state.update(
-                newState => newState
-                    .set('number', newState.get('number') - 1)
-                    .set('text', action.text)
-            );
+            return state.get('countNumber') + action.value;
         default:
             return state;
     }

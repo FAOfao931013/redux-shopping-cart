@@ -35,7 +35,7 @@ ReactDOM.render(
                 history={history}
                 routes={routes}/>
             {
-                process.env.NODE_ENV === 'production' ? null : <DevTools />
+                //process.env.NODE_ENV === 'production' ? null : <DevTools />
             }
         </div>
     </Provider>,

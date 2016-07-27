@@ -47,7 +47,11 @@ export function getAllProducts() {
                             price: 300
                         })
                     ]);
-                    dispatch(receiveAllProducts(products));
+                    const newProducts = products.map(product => product.update(
+                        newProduct => newProduct.set('countNumber', 0)
+                    ));
+
+                    dispatch(receiveAllProducts(newProducts));
                 });
         } else {
             const products = localStorageToImmutable(localStore.get('shop').goods.products);
@@ -57,10 +61,11 @@ export function getAllProducts() {
     }
 }
 
-export function addToCart(productId) {
+export function addToCart(productId, countNumber) {
     return {
         type: ADDTOCART,
         id: productId,
+        count: countNumber,
         text: 'add product to cart'
     }
 }

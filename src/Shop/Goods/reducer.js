@@ -1,12 +1,14 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
-
+import countNumber from 'src/components/countNumber';
 const {Map,List} = Immutable;
 
 const {
     ALLPRODUCTS,
     ADDTOCART,
-    BACKTOGOODS
+    BACKTOGOODS,
+    ADD,
+    MINUS
     } = actionTypes;
 
 const initialState = Map({
@@ -29,6 +31,11 @@ export default (state = initialState, action) => {
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
+        case ADD:
+        case MINUS:
+            return state.update(
+                newState => newState.set('products', goods(newState, action))
+            );
         default:
             return state;
     }
@@ -44,9 +51,19 @@ function goods(state = Map(), action) {
 
             const oldCount = oldProducts.get(index).get('count');
 
-            const newItem = oldProducts.get(index).set('count', oldCount - 1);
+            const newItem = oldProducts.get(index).set('count', oldCount - action.count);
 
-            return oldProducts.set(index, newItem);
+            const newCount = newItem.get('count');
+
+            const oldCountNumber = newItem.get('countNumber');
+
+            const newCountNumber = oldCountNumber <= newCount ? oldCountNumber : newCount;
+
+            const newProduct = newItem.update(
+                newItem => newItem.set('countNumber', newCountNumber)
+            );
+
+            return oldProducts.set(index, newProduct);
         }
         case BACKTOGOODS:
         {
@@ -59,6 +76,19 @@ function goods(state = Map(), action) {
             const newItem = oldProducts.get(index).set('count', oldCount + action.count);
 
             return oldProducts.set(index, newItem);
+        }
+        case ADD:
+        case MINUS:
+        {
+            const products = state.get('products');
+
+            const index = findById(action.id, products);
+
+            const product = products.get(index);
+
+            const newProduct = product.set('countNumber', countNumber.reducer(product, action));
+
+            return products.set(index, newProduct);
         }
         default:
             return state;
