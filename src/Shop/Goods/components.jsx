@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Immutable from 'immutable';
-import countNumber from 'src/components/countNumber';
-import './style.less';
-
-let CountNumber = countNumber.containers;
+import CountNumber from 'src/components/CountNumber';
+//import './style.less';
 
 class ShopGoods extends React.Component {
     constructor(props) {
@@ -22,6 +20,7 @@ class ShopGoods extends React.Component {
             products,
             addToCart,
             gotoCart,
+            setCountNumber
             } = this.props;
 
         return (
@@ -37,10 +36,9 @@ class ShopGoods extends React.Component {
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
                                 <CountNumber
-                                    id={product.get('id')}
-                                    number={product.get('countNumber')}
                                     min='0'
-                                    max={product.get('count')}/>
+                                    max={product.get('count')}
+                                    onChange={number => setCountNumber(product.get('id'),number)}/>
                                 {
                                     product.get('count') > 0 ?
                                         <div>

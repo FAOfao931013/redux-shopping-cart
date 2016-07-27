@@ -10,7 +10,8 @@ const {List, Map} = Immutable;
 const {
     ALLPRODUCTS,
     ADDTOCART,
-    BACKTOGOODS
+    BACKTOGOODS,
+    SETCOUNTNUMBER
     } = actionTypes;
 
 export function receiveAllProducts(products, carts = List()) {
@@ -76,5 +77,13 @@ export function backToGoods(productId, productCount) {
         id: productId,
         count: productCount,
         text: 'back product to Goods'
+    }
+}
+
+export function setCountNumber(id, countNumber) {
+    return {
+        type: SETCOUNTNUMBER,
+        id: id,
+        countNumber: countNumber
     }
 }

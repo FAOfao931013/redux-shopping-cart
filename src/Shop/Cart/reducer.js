@@ -60,7 +60,6 @@ function carts(state = Map(), action) {
     switch (action.type) {
         case ADDTOCART:
         {
-
             const oldProducts = state.get('products');
 
             const index = findById(action.id, oldProducts);

@@ -1,14 +1,12 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
-import countNumber from 'src/components/countNumber';
 const {Map,List} = Immutable;
 
 const {
     ALLPRODUCTS,
     ADDTOCART,
     BACKTOGOODS,
-    ADD,
-    MINUS
+    SETCOUNTNUMBER
     } = actionTypes;
 
 const initialState = Map({
@@ -31,8 +29,7 @@ export default (state = initialState, action) => {
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
-        case ADD:
-        case MINUS:
+        case SETCOUNTNUMBER:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
@@ -59,9 +56,7 @@ function goods(state = Map(), action) {
 
             const newCountNumber = oldCountNumber <= newCount ? oldCountNumber : newCount;
 
-            const newProduct = newItem.update(
-                newItem => newItem.set('countNumber', newCountNumber)
-            );
+            const newProduct = newItem.set('countNumber', newCountNumber);
 
             return oldProducts.set(index, newProduct);
         }
@@ -73,12 +68,13 @@ function goods(state = Map(), action) {
 
             const oldCount = oldProducts.get(index).get('count');
 
-            const newItem = oldProducts.get(index).set('count', oldCount + action.count);
+            const newItem = oldProducts.get(index)
+                .set('count', oldCount + action.count)
+                .set('countNumber', 0);
 
             return oldProducts.set(index, newItem);
         }
-        case ADD:
-        case MINUS:
+        case SETCOUNTNUMBER:
         {
             const products = state.get('products');
 
@@ -86,7 +82,7 @@ function goods(state = Map(), action) {
 
             const product = products.get(index);
 
-            const newProduct = product.set('countNumber', countNumber.reducer(product, action));
+            const newProduct = product.set('countNumber', action.countNumber);
 
             return products.set(index, newProduct);
         }

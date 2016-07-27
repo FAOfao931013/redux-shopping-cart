@@ -7,6 +7,7 @@ import {getProductsSelector} from './selectors';
 const {
     getAllProducts,
     addToCart,
+    setCountNumber
     } = actions;
 
 function mapStateToProps(state) {
@@ -26,6 +27,9 @@ function mapDispatchToProps(dispatch, ownProps) {
         },
         gotoCart(){
             dispatch(push('/shop/cart'));
+        },
+        setCountNumber(id, number){
+            dispatch(setCountNumber(id, number));
         }
     }
 }
