@@ -6,7 +6,7 @@ import containers from './containers';
 import reducer from './reducer';
 import * as selectors from './selectors';
 
-export default {
+export {
     actions,
     actionTypes,
     components,

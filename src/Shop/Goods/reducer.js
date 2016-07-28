@@ -6,7 +6,8 @@ const {
     ALLPRODUCTS,
     ADDTOCART,
     DELETEPRODUCT,
-    SETCOUNTNUMBER
+    SETCOUNTNUMBER,
+    CART_RECEIVEPRODUCTS
     } = actionTypes;
 
 const initialState = Map({
@@ -18,7 +19,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ALLPRODUCTS:
             return Map({
-                products: action.products,
+                products: action.goodsProducts,
                 text: action.text
             });
         case ADDTOCART:
@@ -32,6 +33,10 @@ export default (state = initialState, action) => {
         case SETCOUNTNUMBER:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
+            );
+        case CART_RECEIVEPRODUCTS:
+            return state.update(
+                newState => newState.set('products', action.products)
             );
         default:
             return state;

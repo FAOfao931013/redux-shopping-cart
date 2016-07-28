@@ -1,17 +1,14 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
-import goods from 'src/Shop/goods/index';
 
 const {Map,List} = Immutable;
 
 const {
-    ALLPRODUCTS,
-    ADDTOCART,
-    } =  goods.actionTypes;
-
-const {
     CALCULATE,
     DELETEPRODUCT,
+    CART_SETCOUNT,
+    ALLPRODUCTS,
+    ADDTOCART
     } = actionTypes;
 
 const initialState = Map({
@@ -26,8 +23,8 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ALLPRODUCTS:
             return Map({
-                products: action.products,
-                data: action.carts,
+                products: action.goodsProducts,
+                data: action.cartsData,
                 text: action.text
             });
         case ADDTOCART:
@@ -45,6 +42,12 @@ export default (state = initialState, action) => {
                         .set('totalPrice', calculatePrice(newState.get('data')))
                         .set('totalNumber', calculateNumber(newState.get('data')))
                 }
+            );
+        case CART_SETCOUNT:
+            return state.update(
+                newState => newState
+                    .set('data', carts(newState, action).newData)
+                    .set('products', carts(newState, action).newProducts)
             );
         case DELETEPRODUCT:
             return state.update(
@@ -64,6 +67,29 @@ function carts(state = Map(), action) {
             const index = findById(action.id, oldProducts);
 
             return addToCart(state.get('data'), oldProducts.get(index), action.countNumber);
+        }
+        case CART_SETCOUNT:
+        {
+            const totalCount = calculateTotalCount(state, action.productId);
+
+            const oldData = state.get('data');
+
+            const oldProducts = state.get('products');
+
+            const index = findById(action.productId, oldProducts);
+
+            const newDataItem = oldData.get(index).set('count', action.count);
+
+            const newProductsItem = oldProducts.get(index).set('count', totalCount - action.count);
+
+            const newData = oldData.set(index, newDataItem);
+
+            const newProducts = oldProducts.set(index, newProductsItem);
+
+            return {
+                newData,
+                newProducts
+            }
         }
         case DELETEPRODUCT:
         {
@@ -138,4 +164,14 @@ function deleteProduct(data, index) {
             return newData.delete(index);
         }
     );
+}
+
+function calculateTotalCount(state, productId) {
+    const index = findById(productId, state.get('products'));
+
+    const productCount = state.get('products').get(index).get('count');
+
+    const dataCount = state.get('data').get(index).get('count');
+
+    return productCount + dataCount;
 }

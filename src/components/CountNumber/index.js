@@ -43,10 +43,16 @@ class CountNumber extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({
+            number: this.props.value ? this.props.value : 0
+        })
+    }
+
     componentWillReceiveProps(nextPros) {
-        if (nextPros.value !== this.state.number || !nextPros.value) {
+        if (nextPros.value !== this.state.number) {
             this.setState({
-                number: nextPros.value ? nextPros.value : 0
+                number: nextPros.value
             })
         }
     }

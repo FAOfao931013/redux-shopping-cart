@@ -2,16 +2,12 @@ import { connect } from 'react-redux';
 import { goBack } from 'react-router-redux';
 import ShoppingCart from './components';
 import * as actions from './actions';
-import goods from 'src/Shop/goods/index';
 import { getAllSelector } from './selectors';
-
-const {
-    getAllProducts,
-    } =  goods.actions;
 
 const {
     calculate,
     deleteProduct,
+    setNumber,
     } = actions;
 
 function mapStateToProps(state) {
@@ -24,16 +20,19 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        getAllProducts() {
-            dispatch(getAllProducts());
+        calculateAll() {
             dispatch(calculate());
         },
         deleteProduct(productId, productCount) {
-            dispatch(deleteProduct(productId,productCount));
+            dispatch(deleteProduct(productId, productCount));
             dispatch(calculate());
         },
         goBack(){
-          dispatch(goBack());
+            dispatch(goBack());
+        },
+        setNumber(productId, count){
+            dispatch(setNumber(productId, count));
+            dispatch(calculate());
         }
     }
 }

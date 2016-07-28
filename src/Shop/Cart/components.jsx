@@ -11,7 +11,7 @@ class ShoppingCart extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getAllProducts();
+        this.props.calculateAll();
     }
 
     render() {
@@ -20,7 +20,8 @@ class ShoppingCart extends React.Component {
             totalPrice,
             totalNumber,
             deleteProduct,
-            goBack
+            goBack,
+            setNumber
             } = this.props;
 
         return (
@@ -36,7 +37,8 @@ class ShoppingCart extends React.Component {
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
                                 <CountNumber
-                                    value={product.get('count')}/>
+                                    value={product.get('count')}
+                                    onChange={count => setNumber(product.get('id'),count)}/>
                                 <button onClick={() => deleteProduct(product.get('id'),product.get('count'))}>删除
                                 </button>
                             </div>

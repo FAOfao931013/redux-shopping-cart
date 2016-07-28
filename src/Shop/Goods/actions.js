@@ -14,11 +14,11 @@ const {
     SETCOUNTNUMBER
     } = actionTypes;
 
-export function receiveAllProducts(products, carts = List()) {
+export function receiveAllProducts(goodsProducts, cartsData = List()) {
     return {
         type: ALLPRODUCTS,
-        products: products,
-        carts: carts,
+        goodsProducts: goodsProducts,
+        cartsData: cartsData,
         text: 'get all products'
     }
 }
@@ -55,9 +55,10 @@ export function getAllProducts() {
                     dispatch(receiveAllProducts(newProducts));
                 });
         } else {
-            const products = localStorageToImmutable(localStore.get('shop').goods.products);
-            const carts = localStorageToImmutable(localStore.get('shop').carts.data);
-            dispatch(receiveAllProducts(products, carts));
+            const goodsProducts = localStorageToImmutable(localStore.get('shop').goods.products);
+            const cartsData = localStorageToImmutable(localStore.get('shop').carts.data);
+
+            dispatch(receiveAllProducts(goodsProducts, cartsData));
         }
     }
 }
