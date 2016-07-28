@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Immutable from 'immutable';
+import CountNumber from 'src/components/CountNumber';
 import './style.less';
 
 class ShoppingCart extends React.Component {
@@ -34,6 +35,8 @@ class ShoppingCart extends React.Component {
                                 <div>商品名称:{product.get('name')}</div>
                                 <div>商品数量:{product.get('count')}</div>
                                 <div>商品价格:{product.get('price')}</div>
+                                <CountNumber
+                                    value={product.get('count')}/>
                                 <button onClick={() => deleteProduct(product.get('id'),product.get('count'))}>删除
                                 </button>
                             </div>

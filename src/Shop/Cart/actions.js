@@ -19,10 +19,11 @@ export function calculate() {
     }
 }
 
-export function deleteProduct(productId) {
+export function deleteProduct(productId,productCount) {
     return {
         type: DELETEPRODUCT,
         id: productId,
+        count:productCount,
         text: 'delete product from carts'
     }
 }

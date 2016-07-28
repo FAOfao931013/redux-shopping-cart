@@ -5,7 +5,7 @@ const {Map,List} = Immutable;
 const {
     ALLPRODUCTS,
     ADDTOCART,
-    BACKTOGOODS,
+    DELETEPRODUCT,
     SETCOUNTNUMBER
     } = actionTypes;
 
@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
-        case BACKTOGOODS:
+        case DELETEPRODUCT:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
@@ -60,7 +60,7 @@ function goods(state = Map(), action) {
 
             return oldProducts.set(index, newProduct);
         }
-        case BACKTOGOODS:
+        case DELETEPRODUCT:
         {
             const index = findById(action.id, state.get('products'));
 

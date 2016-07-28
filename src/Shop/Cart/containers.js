@@ -7,7 +7,6 @@ import { getAllSelector } from './selectors';
 
 const {
     getAllProducts,
-    backToGoods
     } =  goods.actions;
 
 const {
@@ -30,9 +29,8 @@ function mapDispatchToProps(dispatch, ownProps) {
             dispatch(calculate());
         },
         deleteProduct(productId, productCount) {
-            dispatch(deleteProduct(productId));
+            dispatch(deleteProduct(productId,productCount));
             dispatch(calculate());
-            dispatch(backToGoods(productId, productCount))
         },
         goBack(){
           dispatch(goBack());

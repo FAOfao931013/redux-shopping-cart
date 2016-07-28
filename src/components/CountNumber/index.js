@@ -44,9 +44,9 @@ class CountNumber extends React.Component {
     }
 
     componentWillReceiveProps(nextPros) {
-        if (nextPros.value !== this.state.number) {
+        if (nextPros.value !== this.state.number || !nextPros.value) {
             this.setState({
-                number: nextPros.value
+                number: nextPros.value ? nextPros.value : 0
             })
         }
     }
@@ -84,8 +84,8 @@ CountNumber.porpTypes = {
 };
 
 CountNumber.defaultProps = {
-    max:99999,
-    min:0
+    max: 99999,
+    min: 0
 };
 
 export default CountNumber;
