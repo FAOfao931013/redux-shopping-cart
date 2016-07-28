@@ -8,15 +8,14 @@ import * as actionTypes from './actionTypes';
 const {List, Map} = Immutable;
 
 const {
-    ALLPRODUCTS,
-    ADDTOCART,
-    BACKTOGOODS,
-    SETCOUNTNUMBER
+    GOODS_GETALL,
+    GOODS_ADDTOCART,
+    GOODS_SETCOUNTNUMBER,
     } = actionTypes;
 
 export function receiveAllProducts(goodsProducts, cartsData = List()) {
     return {
-        type: ALLPRODUCTS,
+        type: GOODS_GETALL,
         goodsProducts: goodsProducts,
         cartsData: cartsData,
         text: 'get all products'
@@ -65,25 +64,17 @@ export function getAllProducts() {
 
 export function addToCart(productId, countNumber) {
     return {
-        type: ADDTOCART,
+        type: GOODS_ADDTOCART,
         id: productId,
         countNumber: countNumber,
         text: 'add product to cart'
     }
-}
 
-export function backToGoods(productId, productCount) {
-    return {
-        type: BACKTOGOODS,
-        id: productId,
-        count: productCount,
-        text: 'back product to Goods'
-    }
 }
 
 export function setCountNumber(id, countNumber) {
     return {
-        type: SETCOUNTNUMBER,
+        type: GOODS_SETCOUNTNUMBER,
         id: id,
         countNumber: countNumber
     }

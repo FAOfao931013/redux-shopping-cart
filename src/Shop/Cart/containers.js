@@ -8,6 +8,7 @@ const {
     calculate,
     deleteProduct,
     setNumber,
+    getAll
     } = actions;
 
 function mapStateToProps(state) {
@@ -20,7 +21,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        calculateAll() {
+        getAll() {
+            dispatch(getAll());
             dispatch(calculate());
         },
         deleteProduct(productId, productCount) {

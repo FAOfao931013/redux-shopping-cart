@@ -4,11 +4,12 @@ import * as actionTypes from './actionTypes';
 const {Map,List} = Immutable;
 
 const {
-    CALCULATE,
-    DELETEPRODUCT,
+    CART_CALCULATE,
+    CART_DELETEPRODUCT,
     CART_SETCOUNT,
-    ALLPRODUCTS,
-    ADDTOCART
+    CART_GETALL,
+    GOODS_ADDTOCART,
+    GOODS_GETALL
     } = actionTypes;
 
 const initialState = Map({
@@ -21,13 +22,19 @@ const initialState = Map({
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ALLPRODUCTS:
+        case GOODS_GETALL:
             return Map({
                 products: action.goodsProducts,
                 data: action.cartsData,
                 text: action.text
             });
-        case ADDTOCART:
+        case CART_GETALL:
+            return Map({
+                products: action.goodsProducts,
+                data: action.cartsData,
+                text: action.text
+            });
+        case GOODS_ADDTOCART:
             if (action.countNumber !== 0) {
                 return state.update(
                     newState => newState.set('data', carts(newState, action))
@@ -35,7 +42,7 @@ export default (state = initialState, action) => {
             } else {
                 return state;
             }
-        case CALCULATE:
+        case CART_CALCULATE:
             return state.update(
                 newState => {
                     return newState
@@ -49,7 +56,7 @@ export default (state = initialState, action) => {
                     .set('data', carts(newState, action).newData)
                     .set('products', carts(newState, action).newProducts)
             );
-        case DELETEPRODUCT:
+        case CART_DELETEPRODUCT:
             return state.update(
                 newState => newState.set('data', carts(newState, action))
             );
@@ -60,7 +67,7 @@ export default (state = initialState, action) => {
 
 function carts(state = Map(), action) {
     switch (action.type) {
-        case ADDTOCART:
+        case GOODS_ADDTOCART:
         {
             const oldProducts = state.get('products');
 
@@ -70,7 +77,7 @@ function carts(state = Map(), action) {
         }
         case CART_SETCOUNT:
         {
-            const totalCount = calculateTotalCount(state, action.productId);
+            const totalCount = getTotalCount(state, action.productId);
 
             const oldData = state.get('data');
 
@@ -91,7 +98,7 @@ function carts(state = Map(), action) {
                 newProducts
             }
         }
-        case DELETEPRODUCT:
+        case CART_DELETEPRODUCT:
         {
             const oldData = state.get('data');
 
@@ -120,7 +127,11 @@ function addToCart(state, product, count = 1) {
     if (typeof findById(product.get('id'), state) === 'undefined') {
         return state.update(
             newState => {
-                return newState.push(product.set('count', count));
+                return newState.push(
+                    product
+                        .set('totalCount', product.get('count'))
+                        .set('count', count)
+                );
             }
         );
     }
@@ -166,12 +177,8 @@ function deleteProduct(data, index) {
     );
 }
 
-function calculateTotalCount(state, productId) {
-    const index = findById(productId, state.get('products'));
+function getTotalCount(state, productId) {
+    const index = findById(productId, state.get('data'));
 
-    const productCount = state.get('products').get(index).get('count');
-
-    const dataCount = state.get('data').get(index).get('count');
-
-    return productCount + dataCount;
+    return state.get('data').get(index).get('totalCount');
 }

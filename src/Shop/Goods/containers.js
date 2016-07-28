@@ -7,7 +7,7 @@ import {getProductsSelector} from './selectors';
 const {
     getAllProducts,
     addToCart,
-    setCountNumber
+    setCountNumber,
     } = actions;
 
 function mapStateToProps(state) {

@@ -1,13 +1,15 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
+
 const {Map,List} = Immutable;
 
 const {
-    ALLPRODUCTS,
-    ADDTOCART,
-    DELETEPRODUCT,
-    SETCOUNTNUMBER,
-    CART_RECEIVEPRODUCTS
+    GOODS_GETALL,
+    GOODS_ADDTOCART,
+    GOODS_SETCOUNTNUMBER,
+    CART_GETALL,
+    CART_RECEIVEPRODUCTS,
+    CART_DELETEPRODUCT
     } = actionTypes;
 
 const initialState = Map({
@@ -17,20 +19,25 @@ const initialState = Map({
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ALLPRODUCTS:
+        case GOODS_GETALL:
             return Map({
                 products: action.goodsProducts,
                 text: action.text
             });
-        case ADDTOCART:
+        case CART_GETALL:
+            return Map({
+                products: action.goodsProducts,
+                text: action.text
+            });
+        case GOODS_ADDTOCART:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
-        case DELETEPRODUCT:
+        case CART_DELETEPRODUCT:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
-        case SETCOUNTNUMBER:
+        case GOODS_SETCOUNTNUMBER:
             return state.update(
                 newState => newState.set('products', goods(newState, action))
             );
@@ -45,7 +52,7 @@ export default (state = initialState, action) => {
 
 function goods(state = Map(), action) {
     switch (action.type) {
-        case ADDTOCART:
+        case GOODS_ADDTOCART:
         {
             const index = findById(action.id, state.get('products'));
 
@@ -65,7 +72,7 @@ function goods(state = Map(), action) {
 
             return oldProducts.set(index, newProduct);
         }
-        case DELETEPRODUCT:
+        case CART_DELETEPRODUCT:
         {
             const index = findById(action.id, state.get('products'));
 
@@ -79,7 +86,7 @@ function goods(state = Map(), action) {
 
             return oldProducts.set(index, newItem);
         }
-        case SETCOUNTNUMBER:
+        case GOODS_SETCOUNTNUMBER:
         {
             const products = state.get('products');
 

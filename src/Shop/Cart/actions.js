@@ -6,31 +6,44 @@ import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
 
 const {
-    CALCULATE,
-    DELETEPRODUCT,
+    CART_CALCULATE,
+    CART_DELETEPRODUCT,
     CART_SETCOUNT,
-    CART_RECEIVEPRODUCTS
+    CART_RECEIVEPRODUCTS,
+    CART_GETALL
     } = actionTypes;
 
 const {Map, List} = Immutable;
 
+export function getAll() {
+    const goodsProducts = localStorageToImmutable(localStore.get('shop').goods.products);
+    const cartsData = localStorageToImmutable(localStore.get('shop').carts.data);
+
+    return {
+        type: CART_GETALL,
+        goodsProducts: goodsProducts,
+        cartsData: cartsData,
+        text: 'get carts products and data'
+    }
+}
+
 export function calculate() {
     return {
-        type: CALCULATE,
+        type: CART_CALCULATE,
         text: 'calculate cart'
     }
 }
 
 export function deleteProduct(productId, productCount) {
     return {
-        type: DELETEPRODUCT,
+        type: CART_DELETEPRODUCT,
         id: productId,
         count: productCount,
         text: 'delete product from carts'
     }
 }
 
-export function setNumberAction(productId, count) {
+function setNumberAction(productId, count) {
     return {
         type: CART_SETCOUNT,
         productId: productId,
@@ -38,7 +51,8 @@ export function setNumberAction(productId, count) {
         text: 'set cart count'
     }
 }
-export function receiveCartProducts(products) {
+
+function receiveCartProducts(products) {
     return {
         type: CART_RECEIVEPRODUCTS,
         products: products
@@ -48,8 +62,6 @@ export function receiveCartProducts(products) {
 export function setNumber(productId, count) {
     return (dispatch, getState) => {
         dispatch(setNumberAction(productId, count));
-        return (dispatch, getState) => {
-            dispatch(getState().carts.get('products'))
-        }
+        dispatch(receiveCartProducts(getState().carts.get('products')))
     };
 }
