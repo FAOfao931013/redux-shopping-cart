@@ -11,9 +11,11 @@ import SliderMonitor from 'redux-slider-monitor';
 import DiffMonitor from 'redux-devtools-diff-monitor';
 
 const DevTools = createDevTools(
-    <DockMonitor toggleVisibilityKey='ctrl-h'
-                 changePositionKey='ctrl-q'
-                 defaultIsVisible={true}>
+    <DockMonitor
+        toggleVisibilityKey='ctrl-d'
+        changePositionKey='ctrl-q'
+        defaultIsVisible={true}
+        defaultSize={0.5}>
         <LogMonitor theme='tomorrow'/>
     </DockMonitor>
 );
