@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router';
 import rootNode from './rootNode';
-import * as goods from 'src/Shop/goods';
-import * as cart from 'src/Shop/cart';
+import * as Good from 'src/Good';
+import * as Cart from 'src/Cart';
 
 let routes = (
     <div>
         <Route path="/shop" component={rootNode}>
-            <Route path="goods" component={goods.containers}/>
-            <Route path="cart" component={cart.containers}/>
+            <Route path="goods" component={Good.containers}/>
+            <Route path="cart" component={Cart.containers}/>
         </Route>
     </div>
 );
