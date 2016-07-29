@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
             );
         case CART_RECEIVEPRODUCTS:
             return state.update(
-                newState => newState.set('products', action.products)
+                newState => newState.set('products', goods(newState, action))
             );
         default:
             return state;
@@ -88,16 +88,25 @@ function goods(state = Map(), action) {
         }
         case GOODS_SETCOUNTNUMBER:
         {
-            const products = state.get('products');
+            const oldProducts = state.get('products');
 
-            const index = findById(action.id, products);
+            const index = findById(action.id, oldProducts);
 
-            const product = products.get(index);
+            const product = oldProducts.get(index);
 
             const newProduct = product.set('countNumber', action.countNumber);
 
-            return products.set(index, newProduct);
+            return oldProducts.set(index, newProduct);
         }
+        case CART_RECEIVEPRODUCTS:
+
+            const oldProducts = state.get('products');
+
+            const index = findById(action.id, oldProducts);
+
+            const product = action.products.get(index);
+
+            return oldProducts.set(index, product);
         default:
             return state;
     }

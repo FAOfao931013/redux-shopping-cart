@@ -85,11 +85,11 @@ function carts(state = Map(), action) {
 
             const index = findById(action.productId, oldProducts);
 
-            const newDataItem = oldData.get(index).set('count', action.count);
+            const newDataItem = oldData.get(action.index).set('count', action.count);
 
             const newProductsItem = oldProducts.get(index).set('count', totalCount - action.count);
 
-            const newData = oldData.set(index, newDataItem);
+            const newData = oldData.set(action.index, newDataItem);
 
             const newProducts = oldProducts.set(index, newProductsItem);
 
@@ -111,7 +111,7 @@ function carts(state = Map(), action) {
     }
 }
 
-function findById(productId, data) {
+function findById(productId, data,what) {
     let _index;
 
     data.map((product, index) => {

@@ -1,43 +1,6 @@
 import { connect } from 'react-redux';
-import { goBack } from 'react-router-redux';
 import ShoppingCart from './components';
-import * as actions from './actions';
-import { getAllSelector } from './selectors';
-
-const {
-    calculate,
-    deleteProduct,
-    setNumber,
-    getAll
-    } = actions;
-
-function mapStateToProps(state) {
-    return {
-        data: getAllSelector(state).data,
-        totalPrice: getAllSelector(state).totalPrice,
-        totalNumber: getAllSelector(state).totalNumber
-    };
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        getAll() {
-            dispatch(getAll());
-            dispatch(calculate());
-        },
-        deleteProduct(productId, productCount) {
-            dispatch(deleteProduct(productId, productCount));
-            dispatch(calculate());
-        },
-        goBack(){
-            dispatch(goBack());
-        },
-        setNumber(productId, count){
-            dispatch(setNumber(productId, count));
-            dispatch(calculate());
-        }
-    }
-}
+import { mapStateToProps,mapDispatchToProps } from './selectors';
 
 export default connect(
     mapStateToProps,

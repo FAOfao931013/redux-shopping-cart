@@ -28,7 +28,7 @@ class ShoppingCart extends React.Component {
             <div className='shopping-cart'>
                 {
                     data &&
-                    data.map(product => {
+                    data.map((product, index) => {
                         return (
                             <div
                                 key={product.get('id')}
@@ -40,7 +40,7 @@ class ShoppingCart extends React.Component {
                                     max={product.get('totalCount')}
                                     min={1}
                                     value={product.get('count')}
-                                    onChange={count => setNumber(product.get('id'),count)}/>
+                                    onChange={count => setNumber(product.get('id'),count,index)}/>
                                 <button onClick={() => deleteProduct(product.get('id'),product.get('count'))}>删除
                                 </button>
                             </div>

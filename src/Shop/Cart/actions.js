@@ -43,25 +43,27 @@ export function deleteProduct(productId, productCount) {
     }
 }
 
-function setNumberAction(productId, count) {
+function setNumberAction(productId, count, index) {
     return {
         type: CART_SETCOUNT,
         productId: productId,
         count: count,
+        index: index,
         text: 'set cart count'
     }
 }
 
-function receiveCartProducts(products) {
+function receiveCartProducts(products, productId) {
     return {
         type: CART_RECEIVEPRODUCTS,
-        products: products
+        products: products,
+        id: productId
     }
 }
 
-export function setNumber(productId, count) {
+export function setNumber(productId, count, index) {
     return (dispatch, getState) => {
-        dispatch(setNumberAction(productId, count));
-        dispatch(receiveCartProducts(getState().carts.get('products')))
+        dispatch(setNumberAction(productId, count, index));
+        dispatch(receiveCartProducts(getState().carts.get('products'), productId))
     };
 }
