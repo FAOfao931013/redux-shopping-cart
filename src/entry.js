@@ -40,5 +40,5 @@ ReactDOM.render(
             }
         </div>
     </Provider>,
-    document.getElementById('fao')
+    document.getElementById('root')
 );
