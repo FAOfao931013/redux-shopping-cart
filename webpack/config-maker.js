@@ -4,7 +4,7 @@ var path = require('path');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var paths = {
-    src:path.join(__dirname, '../src'),
+    src: path.join(__dirname, '../src'),
     store: path.join(__dirname, '../src/store'),
     reducers: path.join(__dirname, '../src/reducers'),
     routes: path.join(__dirname, '../src/routes'),
@@ -45,6 +45,18 @@ var config = {
             {
                 test: /\.less$/,
                 loader: "style!css!less"
+            },
+            //css
+            {
+                test: /\.css$/,
+                loaders: [
+                    'style',
+                    'css?root=.'
+                ]
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif|svg|woff|woff2|ttf|eot)$/,
+                loader: 'url-loader'
             }
 
         ]

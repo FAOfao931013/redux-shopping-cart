@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'common/f7';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -25,7 +26,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 store.subscribe(() => {
     //存储数据到本地
     //console.log(store.getState());
-    localStore.set('shop',store.getState());
+    localStore.set('shop', store.getState());
 });
 
 ReactDOM.render(
