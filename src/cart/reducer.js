@@ -85,7 +85,9 @@ function carts(state = Map(), action) {
 
             const index = findById(action.productId, oldProducts);
 
-            const newDataItem = oldData.get(action.index).set('count', action.count);
+            const newDataItem = oldData.get(action.index)
+                .set('count', action.count)
+                .set('totalPrice', action.count * oldData.get(action.index).get('price'));
 
             const newProductsItem = oldProducts.get(index).set('count', totalCount - action.count);
 
@@ -111,7 +113,7 @@ function carts(state = Map(), action) {
     }
 }
 
-function findById(productId, data,what) {
+function findById(productId, data, what) {
     let _index;
 
     data.map((product, index) => {
@@ -154,7 +156,7 @@ function calculatePrice(data = Map()) {
     let totalPrice = 0;
 
     data.map(product => {
-        totalPrice += product.get('count') * product.get('price');
+        totalPrice += product.get('totalPrice');
     });
 
     return totalPrice;
