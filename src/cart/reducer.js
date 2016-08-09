@@ -133,6 +133,7 @@ function addToCart(state, product, count = 1) {
                     product
                         .set('totalCount', product.get('count'))
                         .set('count', count)
+                        .set('totalPrice',count * product.get('price'))
                 );
             }
         );
@@ -145,7 +146,9 @@ function addToCart(state, product, count = 1) {
 
             const oldCount = newState.get(index).get('count');
 
-            const newItem = newState.get(index).set('count', oldCount + count);
+            const newItem = newState.get(index)
+                .set('count', oldCount + count)
+                .set('totalPrice', (oldCount + count) * newState.get(index).get('price'));
 
             return newState.set(index, newItem);
         }

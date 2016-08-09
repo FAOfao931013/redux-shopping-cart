@@ -48,7 +48,9 @@ export function getAllProducts() {
                         })
                     ]);
                     const newProducts = products.map(product => product.update(
-                        newProduct => newProduct.set('countNumber', 0)
+                        newProduct => newProduct
+                            .set('countNumber', 0)
+                            .set('totalPrice', 0)
                     ));
 
                     dispatch(receiveAllProducts(newProducts));
