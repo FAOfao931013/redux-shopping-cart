@@ -46,7 +46,7 @@ class ShopGoods extends React.Component {
                                     product.get('count') > 0 ?
                                         <div>
                                             <button
-                                                className='button button-fill button-raised button-orange'
+                                                className='button button-fill button-raised button-orange add-cart'
                                                 onClick={() => addToCart(product.get('id'),product.get('countNumber'))}>
                                                 加入购物车
                                             </button>
