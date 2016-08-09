@@ -1,3 +1,38 @@
+@import '../../less/global.less';
+
 .countNumber {
   display: flex;
+  a.add,
+  a.minus {
+    background-color: #ededed;
+    color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 0;
+
+  }
+  a.add {
+    border-left: 0;
+    font-size: 25px;
+    line-height: 22px;
+  }
+
+  a.minus {
+    border-right: 0;
+    font-size: 30px;
+    line-height: 24px;
+  }
+
+  .number {
+    width: 25px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  input {
+    font-size: 16px;
+  }
+
+  a.disabled {
+    color: #ccc;
+  }
 }
+

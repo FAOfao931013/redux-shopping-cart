@@ -31,18 +31,22 @@ class ShopGoods extends React.Component {
                             <div
                                 key={product.get('id')}
                                 className='product'>
-                                <div>商品名称:{product.get('name')}</div>
-                                <div>商品数量:{product.get('count')}</div>
-                                <div>商品价格:{product.get('price')}</div>
-                                <CountNumber
-                                    min={0}
-                                    max={product.get('count')}
-                                    value={product.get('countNumber')}
-                                    onChange={number => setCountNumber(product.get('id'),number)}/>
+                                <div className="good-name">商品名称:{product.get('name')}</div>
+                                <div className="good-price">¥{product.get('price')}</div>
+                                <div className="count-number">
+                                    <div>数量</div>
+                                    <CountNumber
+                                        min={0}
+                                        max={product.get('count')}
+                                        value={product.get('countNumber')}
+                                        onChange={number => setCountNumber(product.get('id'),number)}/>
+                                    <div>库存:{product.get('count')}件</div>
+                                </div>
                                 {
                                     product.get('count') > 0 ?
                                         <div>
                                             <button
+                                                className="button button-fill button-raised button-orange"
                                                 onClick={() => addToCart(product.get('id'),product.get('countNumber'))}>
                                                 加入购物车
                                             </button>
@@ -54,7 +58,7 @@ class ShopGoods extends React.Component {
                     })
                 }
                 <button
-                    className='to-cart'
+                    className='button button-fill button-raised to-cart button-red'
                     onClick={gotoCart}>去购物车
                 </button>
             </div>

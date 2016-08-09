@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import './style.less';
 
 class CountNumber extends React.Component {
@@ -70,15 +71,17 @@ class CountNumber extends React.Component {
 
         return (
             <div className='countNumber'>
-                <button
-                    onClick={this._minusNumber}
-                    disabled={number<=min}>-
-                </button>
-                <div>{number}</div>
-                <button
-                    onClick={this._addNumber}
-                    disabled={number>=max}>+
-                </button>
+                <a
+                    className={classNames('button','button-fill', 'button-raised', 'minus',{
+                        disabled:number<=min
+                    })}
+                    onClick={this._minusNumber}>-</a>
+                <input className="number" value={number}/>
+                <a
+                    className={classNames('button','button-fill', 'button-raised', 'add',{
+                        disabled:number>=max
+                    })}
+                    onClick={this._addNumber}>+</a>
             </div>
         )
     }
