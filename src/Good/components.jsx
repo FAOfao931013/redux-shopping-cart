@@ -32,7 +32,7 @@ class ShopGoods extends React.Component {
                                 key={product.get('id')}
                                 className='product'>
                                 <div className="good-name">商品名称:{product.get('name')}</div>
-                                <div className="good-price">¥{product.get('price')}</div>
+                                <div className="good-price">价格:¥{product.get('price')}</div>
                                 <div className="count-number">
                                     <div>数量</div>
                                     <CountNumber
@@ -46,7 +46,7 @@ class ShopGoods extends React.Component {
                                     product.get('count') > 0 ?
                                         <div>
                                             <button
-                                                className="button button-fill button-raised button-orange"
+                                                className='button button-fill button-raised button-orange'
                                                 onClick={() => addToCart(product.get('id'),product.get('countNumber'))}>
                                                 加入购物车
                                             </button>

@@ -33,15 +33,21 @@ class ShoppingCart extends React.Component {
                             <div
                                 key={product.get('id')}
                                 className='product'>
-                                <div>商品名称:{product.get('name')}</div>
-                                <div>商品数量:{product.get('count')}</div>
-                                <div>商品价格:{product.get('price')}</div>
-                                <CountNumber
-                                    max={product.get('totalCount')}
-                                    min={1}
-                                    value={product.get('count')}
-                                    onChange={count => setNumber(product.get('id'),count,index)}/>
-                                <button onClick={() => deleteProduct(product.get('id'),product.get('count'))}>删除
+                                <div className="good-name">商品名称:{product.get('name')}</div>
+                                <div className="good-price">商品单价:¥{product.get('price')}</div>
+                                <div className="count-number">
+                                    <div>数量:</div>
+                                    <CountNumber
+                                        max={product.get('totalCount')}
+                                        min={1}
+                                        value={product.get('count')}
+                                        onChange={count => setNumber(product.get('id'),count,index)}/>
+                                    <div className="good-totalPrice">金额:¥{product.get('totalPrice')}</div>
+                                </div>
+                                <button
+                                    className="button button-fill button-raised button-orange "
+                                    onClick={() => deleteProduct(product.get('id'),product.get('count'))}>
+                                    删除
                                 </button>
                             </div>
                         );
@@ -50,13 +56,15 @@ class ShoppingCart extends React.Component {
                 {
                     data &&
                     data.size ?
-                        <div>
+                        <div className="total-area">
                             <div>总共:{totalNumber}件商品</div>
-                            <div>总价:{totalPrice}元</div>
+                            <div>合计:{totalPrice}元</div>
                         </div>
                         : <div>暂无商品</div>
                 }
-                <button onClick={goBack}>返回</button>
+                <button
+                    className='button button-fill button-raised to-cart button-red'
+                    onClick={goBack}>返回</button>
             </div>
         );
     }
