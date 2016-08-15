@@ -76,10 +76,9 @@ var config = {
         //new styleLintPlugin({
         //    configFile: '.stylelintrc',
         //    syntax: 'less',
-        //    files: '../src/components/**/**/*.less'
+        //    files: '../src/**/*.less'
         //})
     ]
 };
 
 module.exports = new WebpackConfig.Config().merge(config);
-

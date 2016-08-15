@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import { goBack } from 'react-router-redux';
 import * as actions from './actions';
+import { NAME } from './constants';
 
 const {Map} = Immutable;
 
@@ -12,9 +13,9 @@ const {
     getAll
     } = actions;
 
-const getData = state => Map.isMap(state.carts) ? state.carts.get('data') : null;
-const getTotalPrice = state => Map.isMap(state.carts) ? state.carts.get('totalPrice') : null;
-const getTotalNumber = state => Map.isMap(state.carts) ? state.carts.get('totalNumber') : null;
+const getData = state => Map.isMap(state[NAME]) ? state[NAME].get('data') : null;
+const getTotalPrice = state => Map.isMap(state[NAME]) ? state[NAME].get('totalPrice') : null;
+const getTotalNumber = state => Map.isMap(state[NAME]) ? state[NAME].get('totalNumber') : null;
 
 export const getAllSelector = createSelector(
     [getData, getTotalPrice, getTotalNumber],
