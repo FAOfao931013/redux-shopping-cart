@@ -62,7 +62,7 @@ class ShoppingCart extends React.Component {
                             <div>总共:{totalNumber}件商品</div>
                             <div>合计:{totalPrice}元</div>
                         </div>
-                        : <div>暂无商品</div>
+                        : <div className="no-goods">暂无商品</div>
                 }
                 <button
                     className='button button-fill button-raised to-cart button-red'
