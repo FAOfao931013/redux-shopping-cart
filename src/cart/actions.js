@@ -16,13 +16,13 @@ const {
 const {Map, List} = Immutable;
 
 export function getAll() {
-    const goodsProducts = localStorageToImmutable(localStore.get('shop').goods.products);
-    const cartsData = localStorageToImmutable(localStore.get('shop').carts.data);
+    const goodProducts = localStorageToImmutable(localStore.get('shop').Good.products);
+    const cartData = localStorageToImmutable(localStore.get('shop').Cart.data);
 
     return {
         type: CART_GETALL,
-        goodsProducts: goodsProducts,
-        cartsData: cartsData,
+        goodProducts: goodProducts,
+        cartData: cartData,
         text: 'get carts products and data'
     }
 }

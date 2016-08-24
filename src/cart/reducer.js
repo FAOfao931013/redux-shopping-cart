@@ -24,14 +24,14 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case GOODS_GETALL:
             return Map({
-                products: action.goodsProducts,
-                data: action.cartsData,
+                products: action.goodProducts,
+                data: action.cartData,
                 text: action.text
             });
         case CART_GETALL:
             return Map({
-                products: action.goodsProducts,
-                data: action.cartsData,
+                products: action.goodProducts,
+                data: action.cartData,
                 text: action.text
             });
         case GOODS_ADDTOCART:

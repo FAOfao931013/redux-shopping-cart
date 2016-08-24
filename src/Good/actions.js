@@ -13,11 +13,11 @@ const {
     GOODS_SETCOUNTNUMBER,
     } = actionTypes;
 
-export function receiveAllProducts(goodsProducts, cartsData = List()) {
+export function receiveAllProducts(goodProducts, cartData = List()) {
     return {
         type: GOODS_GETALL,
-        goodsProducts: goodsProducts,
-        cartsData: cartsData,
+        goodProducts: goodProducts,
+        cartData: cartData,
         text: 'get all products'
     }
 }
@@ -56,10 +56,10 @@ export function getAllProducts() {
                     dispatch(receiveAllProducts(newProducts));
                 });
         } else {
-            const goodsProducts = localStorageToImmutable(localStore.get('shop').goods.products);
-            const cartsData = localStorageToImmutable(localStore.get('shop').carts.data);
+            const goodProducts = localStorageToImmutable(localStore.get('shop').Good.products);
+            const cartData = localStorageToImmutable(localStore.get('shop').Cart.data);
 
-            dispatch(receiveAllProducts(goodsProducts, cartsData));
+            dispatch(receiveAllProducts(goodProducts, cartData));
         }
     }
 }

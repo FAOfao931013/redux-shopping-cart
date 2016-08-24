@@ -1,1 +1,1 @@
-export const NAME = 'carts';
+export const NAME = 'Cart';
