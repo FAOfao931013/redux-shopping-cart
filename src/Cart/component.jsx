@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
+import Header from 'src/components/Header';
 import './style.less';
 
 class ShoppingCart extends React.Component {
@@ -54,7 +55,18 @@ class ShoppingCart extends React.Component {
 
         return (
             <div className='shopping-cart'>
+                <Header
+                    left={{
+                        name:'返回',
+                        event:'back'
+                    }}
+                    center='购物车'
+                    right={{
+                        name:'去买单'
+                    }}/>
+
                 {data && this.renderData(data)}
+
                 {
                     data &&
                     data.size ?

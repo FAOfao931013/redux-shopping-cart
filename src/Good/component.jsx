@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
+import Header from 'src/components/Header';
 import './style.less';
 
 class ShopGoods extends React.Component {
@@ -58,7 +59,18 @@ class ShopGoods extends React.Component {
 
         return (
             <div className='shop-goods'>
+                <Header
+                    left={{
+                        name:'返回'
+                    }}
+                    center='商品列表'
+                    right={{
+                        name:'购物车',
+                        url:'/shop/cart'
+                    }}/>
+
                 {products && this.renderProducts(products)}
+
                 <button
                     className='button button-fill button-raised to-cart button-red'
                     onClick={gotoCart}>去购物车

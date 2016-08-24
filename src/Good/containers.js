@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ShopGoods from './components';
+import ShopGoods from './component';
 import {mapStateToProps,mapDispatchToProps} from './selectors';
 
 
