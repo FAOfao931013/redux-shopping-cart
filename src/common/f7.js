@@ -15,4 +15,4 @@ const mainView = () => myApp.addView('.view-main');
 
 $(document).on('click', 'a:not(.link-tel)', e => e.preventDefault());
 
-export { $, Framework7, myApp, mainView };
+export default { $, Framework7, myApp, mainView };

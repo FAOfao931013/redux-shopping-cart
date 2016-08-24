@@ -1,5 +1,6 @@
-import f7 from './f7';
-let $ = f7.$;
+import f7 from './f7.js';
+
+let {$} = f7;
 
 let $pages = $('#pages');
 
