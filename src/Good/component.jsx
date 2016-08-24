@@ -4,6 +4,8 @@ import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
 import Header from 'src/components/Header';
+import Content from 'src/components/Content';
+import Toolbar from 'src/components/Toolbar';
 import './style.less';
 
 class ShopGoods extends React.Component {
@@ -69,12 +71,17 @@ class ShopGoods extends React.Component {
                         url:'/shop/cart'
                     }}/>
 
-                {products && this.renderProducts(products)}
+                <Content>
+                    {products && this.renderProducts(products)}
+                </Content>
 
-                <button
-                    className='button button-fill button-raised to-cart button-red'
-                    onClick={gotoCart}>去购物车
-                </button>
+                <Toolbar>
+                    <button
+                        className='button button-fill button-raised to-cart button-red'
+                        onClick={gotoCart}>去购物车
+                    </button>
+                </Toolbar>
+
             </div>
         );
     }

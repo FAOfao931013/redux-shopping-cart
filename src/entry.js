@@ -31,7 +31,7 @@ store.subscribe(() => {
 
 ReactDOM.render(
     <Provider store={store}>
-        <div>
+        <div className="entry-wrap">
             <Router
                 history={history}
                 routes={routes}/>

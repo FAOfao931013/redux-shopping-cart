@@ -45,6 +45,30 @@ export function getAllProducts() {
                             name: 'C',
                             count: 15,
                             price: 300
+                        }),
+                        Map({
+                            id: 4,
+                            name: 'D',
+                            count: 15,
+                            price: 300
+                        }),
+                        Map({
+                            id: 5,
+                            name: 'E',
+                            count: 15,
+                            price: 300
+                        }),
+                        Map({
+                            id: 6,
+                            name: 'F',
+                            count: 15,
+                            price: 300
+                        }),
+                        Map({
+                            id: 7,
+                            name: 'G',
+                            count: 15,
+                            price: 300
                         })
                     ]);
                     const newProducts = products.map(product => product.update(

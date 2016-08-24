@@ -4,6 +4,8 @@ import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
 import Header from 'src/components/Header';
+import Content from 'src/components/Content';
+import Toolbar from 'src/components/Toolbar';
 import './style.less';
 
 class ShoppingCart extends React.Component {
@@ -65,21 +67,26 @@ class ShoppingCart extends React.Component {
                         name:'去买单'
                     }}/>
 
-                {data && this.renderData(data)}
+                <Content>
+                    {data && this.renderData(data)}
 
-                {
-                    data &&
-                    data.size ?
-                        <div className="total-area">
-                            <div>总共:{totalNumber}件商品</div>
-                            <div>合计:{totalPrice}元</div>
-                        </div>
-                        : <div className="no-goods">暂无商品</div>
-                }
-                <button
-                    className='button button-fill button-raised to-cart button-red'
-                    onClick={goBack}>返回
-                </button>
+                    {
+                        data &&
+                        data.size ?
+                            <div className="total-area">
+                                <div>总共:{totalNumber}件商品</div>
+                                <div>合计:{totalPrice}元</div>
+                            </div>
+                            : <div className="no-goods">暂无商品</div>
+                    }
+                </Content>
+
+                <Toolbar>
+                    <button
+                        className='button button-fill button-raised to-cart button-red'
+                        onClick={goBack}>返回
+                    </button>
+                </Toolbar>
             </div>
         );
     }
