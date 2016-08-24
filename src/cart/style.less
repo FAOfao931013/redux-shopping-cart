@@ -18,23 +18,37 @@
     }
   }
 
+  .good-totalPrice{
+    margin-bottom: 10px;
+  }
+
   .good-name,
   .good-price {
     font-size: 14px;
   }
 
   .total-area {
-    margin: 10px;
     font-size: 16px;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
   }
 
-  .to-cart {
-    margin: 10px;
+  .back-good {
+    width: 35%;
   }
 
   .no-goods {
-    text-align: center;
-    padding: 10% 0;
     font-size: 18px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cart-toolbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
   }
 }
