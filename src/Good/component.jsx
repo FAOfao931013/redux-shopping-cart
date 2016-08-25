@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import Immutable from 'immutable';
 import CountNumber from 'src/components/CountNumber';
 import Header from 'src/components/Header';
