@@ -68,24 +68,26 @@ class ShoppingCart extends React.Component {
                     }}/>
 
                 <Content>
-                    {data && this.renderData(data)}
+                    {
+                        data && data.size ? this.renderData(data) : <div className="no-goods">暂无商品</div>
+                    }
                 </Content>
 
                 <Toolbar>
-                    <div className="cart-toolbar">
+                    <div className="cart-toolbar row">
                         {
-                            data &&
-                            data.size ?
-                                <div className="total-area">
-                                    <div>总共:{totalNumber}件商品</div>
-                                    <div>合计:{totalPrice}元</div>
-                                </div>
-                                : <div className="no-goods">暂无商品</div>
+                            data && data.size > 0 &&
+                            <div className="total-area col-70">
+                                <div>总共:{totalNumber}件商品</div>
+                                <div>合计:{totalPrice}元</div>
+                            </div>
                         }
-                        <button
-                            className='button button-fill button-raised back-good button-red'
-                            onClick={goBack}>返回
-                        </button>
+                        <div className="back-area col-30">
+                            <button
+                                className='button button-fill button-raised back-good button-red'
+                                onClick={goBack}>返回
+                            </button>
+                        </div>
                     </div>
                 </Toolbar>
             </div>
