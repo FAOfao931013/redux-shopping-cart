@@ -10,17 +10,17 @@ class Header extends React.Component {
 
     go(event, history) {
         if (event === 'back') {
-            this.props.go(-1);
+            this.props.dispatch(go(-1));
         } else if (event === 'forward') {
-            this.props.go(1);
+            this.props.dispatch(go(1));
         } else {
-            this.props.go(history);
+            this.props.dispatch(go(history));
         }
     }
 
     goto(url) {
         if (url) {
-            this.props.goto(url);
+            this.props.dispatch(push(url));
         } else {
             return;
         }
@@ -43,7 +43,8 @@ class Header extends React.Component {
                         <div className="center">{center}</div>
                         <div
                             className="right link"
-                            onClick={() => this.goto(right.url)}>{right.name}</div>
+                            onClick={() => this.goto(right.url)}>{right.name}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,22 +52,4 @@ class Header extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state;
-}
-
-function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        go(history){
-            dispatch(go(history));
-        },
-        goto(url){
-            dispatch(push(url))
-        }
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Header);
+export default connect()(Header);

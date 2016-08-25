@@ -64,6 +64,6 @@ function receiveCartProducts(products, productId) {
 export function setNumber(productId, count, index) {
     return (dispatch, getState) => {
         dispatch(setNumberAction(productId, count, index));
-        dispatch(receiveCartProducts(getState().carts.get('products'), productId))
+        dispatch(receiveCartProducts(getState().Cart.get('products'), productId))
     };
 }

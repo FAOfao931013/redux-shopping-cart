@@ -4,7 +4,10 @@ import CountNumber from 'src/components/CountNumber';
 import Header from 'src/components/Header';
 import Content from 'src/components/Content';
 import Toolbar from 'src/components/Toolbar';
+import ListBlock from 'src/components/ListBlock';
 import './style.less';
+
+const {List, Item} = ListBlock;
 
 class ShoppingCart extends React.Component {
     constructor(props) {
@@ -22,7 +25,7 @@ class ShoppingCart extends React.Component {
             } = this.props;
 
         return data.map((product, index) => (
-            <div
+            <Item
                 key={product.get('id')}
                 className='product'>
                 <div className="good-name">商品名称:{product.get('name')}</div>
@@ -41,7 +44,7 @@ class ShoppingCart extends React.Component {
                     onClick={() => deleteProduct(product.get('id'),product.get('count'))}>
                     删除
                 </button>
-            </div>
+            </Item>
         ));
     }
 
@@ -67,7 +70,11 @@ class ShoppingCart extends React.Component {
 
                 <Content>
                     {
-                        data && data.size ? this.renderData(data) : <div className="no-goods">暂无商品</div>
+                        data && data.size ?
+                            <List>
+                                {this.renderData(data)}
+                            </List>
+                            : <div className="no-goods">暂无商品</div>
                     }
                 </Content>
 

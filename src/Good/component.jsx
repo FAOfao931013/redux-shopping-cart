@@ -4,7 +4,10 @@ import CountNumber from 'src/components/CountNumber';
 import Header from 'src/components/Header';
 import Content from 'src/components/Content';
 import Toolbar from 'src/components/Toolbar';
+import ListBlock from 'src/components/ListBlock';
 import './style.less';
+
+const {List, Item} = ListBlock;
 
 class ShopGoods extends React.Component {
     constructor(props) {
@@ -22,7 +25,7 @@ class ShopGoods extends React.Component {
             } = this.props;
 
         return products.map(product => (
-            <div
+            <Item
                 key={product.get('id')}
                 className='product'>
                 <div className="good-name">商品名称:{product.get('name')}</div>
@@ -47,7 +50,7 @@ class ShopGoods extends React.Component {
                         </div>
                         : <div>已售空</div>
                 }
-            </div>
+            </Item>
         ));
     }
 
@@ -70,7 +73,9 @@ class ShopGoods extends React.Component {
                     }}/>
 
                 <Content>
-                    {products && this.renderProducts(products)}
+                    <List>
+                        {products && this.renderProducts(products)}
+                    </List>
                 </Content>
 
                 <Toolbar>

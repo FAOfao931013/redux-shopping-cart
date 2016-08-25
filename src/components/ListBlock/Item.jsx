@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 function Item(props) {
 
-    const cn = classNames('item-content', this.props.className, {});
+    const cn = classNames('item-content', props.className, {});
 
     return (
         <li className={cn}>
@@ -13,7 +13,7 @@ function Item(props) {
 }
 
 Item.propTypes = {
-    children: React.PropTypes.any.isRequired
+    children: React.PropTypes.any
 };
 
 export default Item;
