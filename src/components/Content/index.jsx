@@ -15,4 +15,8 @@ class Content extends React.Component {
     }
 }
 
+Content.propTypes = {
+    children: React.PropTypes.any.isRequired
+};
+
 export default Content;

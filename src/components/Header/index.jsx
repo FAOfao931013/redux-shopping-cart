@@ -40,7 +40,9 @@ class Header extends React.Component {
                             className="left link"
                             onClick={() => this.go(left.event)}>{left.name}
                         </div>
+
                         <div className="center">{center}</div>
+
                         <div
                             className="right link"
                             onClick={() => this.goto(right.url)}>{right.name}
@@ -51,5 +53,12 @@ class Header extends React.Component {
         )
     }
 }
+
+Header.propTypes = {
+    left: React.PropTypes.object.isRequired,
+    center: React.PropTypes.string.isRequired,
+    right: React.PropTypes.object.isRequired
+};
+
 
 export default connect()(Header);

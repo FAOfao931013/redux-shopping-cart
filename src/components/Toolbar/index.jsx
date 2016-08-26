@@ -17,4 +17,9 @@ class Toolbar extends React.Component {
     }
 }
 
+
+Toolbar.propTypes = {
+    children: React.PropTypes.any
+};
+
 export default Toolbar;
