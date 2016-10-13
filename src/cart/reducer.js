@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
 
-const {Map,List} = Immutable;
+const {Map, List} = Immutable;
 
 const {
     CART_CALCULATE,
@@ -20,50 +20,61 @@ const initialState = Map({
     text: ''
 });
 
-export default (state = initialState, action) => {
-    switch (action.type) {
-        case GOODS_GETALL:
-            return Map({
-                products: action.goodProducts,
-                data: action.cartData,
-                text: action.text
-            });
-        case CART_GETALL:
-            return Map({
-                products: action.goodProducts,
-                data: action.cartData,
-                text: action.text
-            });
-        case GOODS_ADDTOCART:
-            if (action.countNumber !== 0) {
-                return state.update(
-                    newState => newState.set('data', carts(newState, action))
+function findById(productId, data, what) {
+    let _index;
+
+    data.map((product, index) => {
+        if (product.get('id') === productId) {
+            _index = index;
+        }
+    });
+
+    return _index;
+}
+
+function addToCart(state, product, count = 1) {
+    if (typeof findById(product.get('id'), state) === 'undefined') {
+        return state.update(
+            newState => {
+                return newState.push(
+                    product
+                        .set('totalCount', product.get('count'))
+                        .set('count', count)
+                        .set('totalPrice', count * product.get('price'))
                 );
-            } else {
-                return state;
             }
-        case CART_CALCULATE:
-            return state.update(
-                newState => {
-                    return newState
-                        .set('totalPrice', calculatePrice(newState.get('data')))
-                        .set('totalNumber', calculateNumber(newState.get('data')))
-                }
-            );
-        case CART_SETCOUNT:
-            return state.update(
-                newState => newState
-                    .set('data', carts(newState, action).newData)
-                    .set('products', carts(newState, action).newProducts)
-            );
-        case CART_DELETEPRODUCT:
-            return state.update(
-                newState => newState.set('data', carts(newState, action))
-            );
-        default:
-            return state;
+        );
     }
-};
+
+    return state.update(
+        newState => {
+
+            const index = findById(product.get('id'), state);
+
+            const oldCount = newState.get(index).get('count');
+
+            const newItem = newState.get(index)
+                .set('count', oldCount + count)
+                .set('totalPrice', (oldCount + count) * newState.get(index).get('price'));
+
+            return newState.set(index, newItem);
+        }
+    );
+}
+
+function deleteProduct(data, index) {
+    return data.update(
+        newData => {
+            return newData.delete(index);
+        }
+    );
+}
+
+function getTotalCount(state, productId) {
+    const index = findById(productId, state.get('data'));
+
+    return state.get('data').get(index).get('totalCount');
+}
 
 function carts(state = Map(), action) {
     switch (action.type) {
@@ -98,7 +109,7 @@ function carts(state = Map(), action) {
             return {
                 newData,
                 newProducts
-            }
+            };
         }
         case CART_DELETEPRODUCT:
         {
@@ -111,48 +122,6 @@ function carts(state = Map(), action) {
         default:
             return state;
     }
-}
-
-function findById(productId, data, what) {
-    let _index;
-
-    data.map((product, index) => {
-        if (product.get('id') === productId) {
-            _index = index;
-        }
-    });
-
-    return _index;
-}
-
-function addToCart(state, product, count = 1) {
-    if (typeof findById(product.get('id'), state) === 'undefined') {
-        return state.update(
-            newState => {
-                return newState.push(
-                    product
-                        .set('totalCount', product.get('count'))
-                        .set('count', count)
-                        .set('totalPrice',count * product.get('price'))
-                );
-            }
-        );
-    }
-
-    return state.update(
-        newState => {
-
-            const index = findById(product.get('id'), state);
-
-            const oldCount = newState.get(index).get('count');
-
-            const newItem = newState.get(index)
-                .set('count', oldCount + count)
-                .set('totalPrice', (oldCount + count) * newState.get(index).get('price'));
-
-            return newState.set(index, newItem);
-        }
-    );
 }
 
 function calculatePrice(data = Map()) {
@@ -174,16 +143,47 @@ function calculateNumber(data = Map()) {
     return totalNumber;
 }
 
-function deleteProduct(data, index) {
-    return data.update(
-        newData => {
-            return newData.delete(index);
-        }
-    );
-}
-
-function getTotalCount(state, productId) {
-    const index = findById(productId, state.get('data'));
-
-    return state.get('data').get(index).get('totalCount');
-}
+export default (state = initialState, action) => {
+    switch (action.type) {
+        case GOODS_GETALL:
+            return Map({
+                products: action.goodProducts,
+                data: action.cartData,
+                text: action.text
+            });
+        case CART_GETALL:
+            return Map({
+                products: action.goodProducts,
+                data: action.cartData,
+                text: action.text
+            });
+        case GOODS_ADDTOCART:
+            if (action.countNumber !== 0) {
+                return state.update(
+                    newState => newState.set('data', carts(newState, action))
+                );
+            } else {
+                return state;
+            }
+        case CART_CALCULATE:
+            return state.update(
+                newState => {
+                    return newState
+                        .set('totalPrice', calculatePrice(newState.get('data')))
+                        .set('totalNumber', calculateNumber(newState.get('data')));
+                }
+            );
+        case CART_SETCOUNT:
+            return state.update(
+                newState => newState
+                    .set('data', carts(newState, action).newData)
+                    .set('products', carts(newState, action).newProducts)
+            );
+        case CART_DELETEPRODUCT:
+            return state.update(
+                newState => newState.set('data', carts(newState, action))
+            );
+        default:
+            return state;
+    }
+};

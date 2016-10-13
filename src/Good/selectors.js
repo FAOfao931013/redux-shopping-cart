@@ -19,7 +19,7 @@ export const getProductsSelector = createSelector(
     (products) => {
         return {
             products
-        }
+        };
     }
 );
 
@@ -29,19 +29,19 @@ export function mapStateToProps(state) {
     };
 }
 
-export function mapDispatchToProps(dispatch, ownProps) {
+export function mapDispatchToProps(dispatch) {
     return {
         getAllProducts() {
             dispatch(getAllProducts());
         },
-        addToCart(productId, countNumber){
+        addToCart(productId, countNumber) {
             dispatch(addToCart(productId, countNumber));
         },
-        gotoCart(){
+        gotoCart() {
             dispatch(push('/shop/cart'));
         },
-        setCountNumber(id, number){
+        setCountNumber(id, number) {
             dispatch(setCountNumber(id, number));
         }
-    }
+    };
 }

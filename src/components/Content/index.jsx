@@ -1,17 +1,17 @@
 import React from 'react';
-import './style.less'
+import './style.less';
 
 class Content extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     render() {
         return (
-            <div className="page-content">
+            <div className='page-content'>
                     {this.props.children}
             </div>
-        )
+        );
     }
 }
 

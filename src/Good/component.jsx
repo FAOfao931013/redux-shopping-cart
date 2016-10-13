@@ -28,15 +28,15 @@ class ShopGoods extends React.Component {
             <Item
                 key={product.get('id')}
                 className='product'>
-                <div className="good-name">商品名称:{product.get('name')}</div>
-                <div className="good-price">价格:¥{product.get('price')}</div>
-                <div className="count-number">
+                <div className='good-name'>商品名称:{product.get('name')}</div>
+                <div className='good-price'>价格:¥{product.get('price')}</div>
+                <div className='count-number'>
                     <div>数量</div>
                     <CountNumber
                         min={0}
                         max={product.get('count')}
                         value={product.get('countNumber')}
-                        onChange={number => setCountNumber(product.get('id'),number)}/>
+                        onChange={number => setCountNumber(product.get('id'), number)} />
                     <div>库存:{product.get('count')}件</div>
                 </div>
                 {
@@ -44,7 +44,7 @@ class ShopGoods extends React.Component {
                         <div>
                             <button
                                 className='button button-fill button-raised button-orange add-cart'
-                                onClick={() => addToCart(product.get('id'),product.get('countNumber'))}>
+                                onClick={() => addToCart(product.get('id'), product.get('countNumber'))}>
                                 加入购物车
                             </button>
                         </div>
@@ -70,7 +70,7 @@ class ShopGoods extends React.Component {
                     right={{
                         name:'购物车',
                         url:'/shop/cart'
-                    }}/>
+                    }} />
 
                 <Content>
                     <List>

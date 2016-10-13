@@ -6,9 +6,9 @@ import * as Cart from 'src/Cart';
 
 let routes = (
     <div>
-        <Route path="/shop" component={rootNode}>
-            <Route path="goods" component={Good.containers}/>
-            <Route path="cart" component={Cart.containers}/>
+        <Route path='/shop' component={rootNode}>
+            <Route path='goods' component={Good.containers} />
+            <Route path='cart' component={Cart.containers} />
         </Route>
     </div>
 );

@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { push, go } from 'react-router-redux';
 import localStore from 'localStore';
 import Immutable from 'immutable';
 import localStorageToImmutable from 'common/localStorageToImmutable';
@@ -19,11 +18,11 @@ export function receiveAllProducts(goodProducts, cartData = List()) {
         goodProducts: goodProducts,
         cartData: cartData,
         text: 'get all products'
-    }
+    };
 }
 
 export function getAllProducts() {
-    return (dispatch, getState) => {
+    return dispatch => {
         if (!localStore.get('shop')) {
             return fetch('')
                 .then(() => {
@@ -85,7 +84,7 @@ export function getAllProducts() {
 
             dispatch(receiveAllProducts(goodProducts, cartData));
         }
-    }
+    };
 }
 
 export function addToCart(productId, countNumber) {
@@ -94,7 +93,7 @@ export function addToCart(productId, countNumber) {
         id: productId,
         countNumber: countNumber,
         text: 'add product to cart'
-    }
+    };
 
 }
 
@@ -103,5 +102,5 @@ export function setCountNumber(id, countNumber) {
         type: GOODS_SETCOUNTNUMBER,
         id: id,
         countNumber: countNumber
-    }
+    };
 }

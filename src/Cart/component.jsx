@@ -28,20 +28,20 @@ class ShoppingCart extends React.Component {
             <Item
                 key={product.get('id')}
                 className='product'>
-                <div className="good-name">商品名称:{product.get('name')}</div>
-                <div className="good-price">商品单价:¥{product.get('price')}</div>
-                <div className="count-number">
+                <div className='good-name'>商品名称:{product.get('name')}</div>
+                <div className='good-price'>商品单价:¥{product.get('price')}</div>
+                <div className='count-number'>
                     <div>数量:</div>
                     <CountNumber
                         max={product.get('totalCount')}
                         min={1}
                         value={product.get('count')}
-                        onChange={count => setNumber(product.get('id'),count,index)}/>
+                        onChange={count => setNumber(product.get('id'), count, index)} />
                 </div>
-                <div className="good-totalPrice">金额:¥{product.get('totalPrice')}</div>
+                <div className='good-totalPrice'>金额:¥{product.get('totalPrice')}</div>
                 <button
-                    className="button button-fill button-raised button-orange "
-                    onClick={() => deleteProduct(product.get('id'),product.get('count'))}>
+                    className='button button-fill button-raised button-orange '
+                    onClick={() => deleteProduct(product.get('id'), product.get('count'))}>
                     删除
                 </button>
             </Item>
@@ -66,7 +66,7 @@ class ShoppingCart extends React.Component {
                     center='购物车'
                     right={{
                         name:'去买单'
-                    }}/>
+                    }} />
 
                 <Content>
                     {
@@ -74,20 +74,20 @@ class ShoppingCart extends React.Component {
                             <List>
                                 {this.renderData(data)}
                             </List>
-                            : <div className="no-goods">暂无商品</div>
+                            : <div className='no-goods'>暂无商品</div>
                     }
                 </Content>
 
                 <Toolbar>
-                    <div className="cart-toolbar row">
+                    <div className='cart-toolbar row'>
                         {
                             data && data.size > 0 &&
-                            <div className="total-area col-70">
+                            <div className='total-area col-70'>
                                 <div>总共:{totalNumber}件商品</div>
                                 <div>合计:{totalPrice}元</div>
                             </div>
                         }
-                        <div className="back-area col-30">
+                        <div className='back-area col-30'>
                             <button
                                 className='button button-fill button-raised back-good button-red'
                                 onClick={goBack}>返回

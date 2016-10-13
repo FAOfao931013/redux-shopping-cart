@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-import { push, go } from 'react-router-redux';
 import localStore from 'localStore';
 import localStorageToImmutable from 'common/localStorageToImmutable';
 import Immutable from 'immutable';
@@ -24,14 +22,14 @@ export function getAll() {
         goodProducts: goodProducts,
         cartData: cartData,
         text: 'get carts products and data'
-    }
+    };
 }
 
 export function calculate() {
     return {
         type: CART_CALCULATE,
         text: 'calculate cart'
-    }
+    };
 }
 
 export function deleteProduct(productId, productCount) {
@@ -40,7 +38,7 @@ export function deleteProduct(productId, productCount) {
         id: productId,
         count: productCount,
         text: 'delete product from carts'
-    }
+    };
 }
 
 function setNumberAction(productId, count, index) {
@@ -50,7 +48,7 @@ function setNumberAction(productId, count, index) {
         count: count,
         index: index,
         text: 'set cart count'
-    }
+    };
 }
 
 function receiveCartProducts(products, productId) {
@@ -58,12 +56,12 @@ function receiveCartProducts(products, productId) {
         type: CART_RECEIVEPRODUCTS,
         products: products,
         id: productId
-    }
+    };
 }
 
 export function setNumber(productId, count, index) {
     return (dispatch, getState) => {
         dispatch(setNumberAction(productId, count, index));
-        dispatch(receiveCartProducts(getState().Cart.get('products'), productId))
+        dispatch(receiveCartProducts(getState().Cart.get('products'), productId));
     };
 }

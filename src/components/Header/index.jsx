@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push, go } from 'react-router-redux';
-import './style.less'
+import './style.less';
 
 class Header extends React.Component {
     constructor(props) {
@@ -33,24 +33,24 @@ class Header extends React.Component {
             right,
             } = this.props;
         return (
-            <div className="header">
-                <div className="navbar">
-                    <div className="navbar-inner">
+            <div className='header'>
+                <div className='navbar'>
+                    <div className='navbar-inner'>
                         <div
-                            className="left link"
+                            className='left link'
                             onClick={() => this.go(left.event)}>{left.name}
                         </div>
 
-                        <div className="center">{center}</div>
+                        <div className='center'>{center}</div>
 
                         <div
-                            className="right link"
+                            className='right link'
                             onClick={() => this.goto(right.url)}>{right.name}
                         </div>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 

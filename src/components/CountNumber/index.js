@@ -47,14 +47,14 @@ class CountNumber extends React.Component {
     componentDidMount() {
         this.setState({
             number: this.props.value ? this.props.value : 0
-        })
+        });
     }
 
     componentWillReceiveProps(nextPros) {
         if (nextPros.value !== this.state.number) {
             this.setState({
                 number: nextPros.value
-            })
+            });
         }
     }
 
@@ -72,18 +72,18 @@ class CountNumber extends React.Component {
         return (
             <div className='countNumber'>
                 <a
-                    className={classNames('button','button-fill', 'button-raised', 'minus',{
-                        disabled:number<=min
+                    className={classNames('button', 'button-fill', 'button-raised', 'minus', {
+                        disabled:number <= min
                     })}
                     onClick={this._minusNumber}>-</a>
-                <input className="number" value={number}/>
+                <input className='number' value={number} />
                 <a
-                    className={classNames('button','button-fill', 'button-raised', 'add',{
-                        disabled:number>=max
+                    className={classNames('button', 'button-fill', 'button-raised', 'add', {
+                        disabled:number >= max
                     })}
                     onClick={this._addNumber}>+</a>
             </div>
-        )
+        );
     }
 }
 

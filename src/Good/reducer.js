@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import * as actionTypes from './actionTypes';
 
-const {Map,List} = Immutable;
+const {Map, List} = Immutable;
 
 const {
     GOODS_GETALL,
@@ -17,38 +17,15 @@ const initialState = Map({
     text: ''
 });
 
-export default (state = initialState, action) => {
-    switch (action.type) {
-        case GOODS_GETALL:
-            return Map({
-                products: action.goodProducts,
-                text: action.text
-            });
-        case CART_GETALL:
-            return Map({
-                products: action.goodProducts,
-                text: action.text
-            });
-        case GOODS_ADDTOCART:
-            return state.update(
-                newState => newState.set('products', goods(newState, action))
-            );
-        case CART_DELETEPRODUCT:
-            return state.update(
-                newState => newState.set('products', goods(newState, action))
-            );
-        case GOODS_SETCOUNTNUMBER:
-            return state.update(
-                newState => newState.set('products', goods(newState, action))
-            );
-        case CART_RECEIVEPRODUCTS:
-            return state.update(
-                newState => newState.set('products', goods(newState, action))
-            );
-        default:
-            return state;
-    }
-};
+function findById(productId, data) {
+    let _index;
+    data.map((product, index) => {
+        if (product.get('id') === productId) {
+            _index = index;
+        }
+    });
+    return _index;
+}
 
 function goods(state = Map(), action) {
     switch (action.type) {
@@ -112,12 +89,35 @@ function goods(state = Map(), action) {
     }
 }
 
-function findById(productId, data) {
-    let _index;
-    data.map((product, index) => {
-        if (product.get('id') === productId) {
-            _index = index;
-        }
-    });
-    return _index;
-}
+export default (state = initialState, action) => {
+    switch (action.type) {
+        case GOODS_GETALL:
+            return Map({
+                products: action.goodProducts,
+                text: action.text
+            });
+        case CART_GETALL:
+            return Map({
+                products: action.goodProducts,
+                text: action.text
+            });
+        case GOODS_ADDTOCART:
+            return state.update(
+                newState => newState.set('products', goods(newState, action))
+            );
+        case CART_DELETEPRODUCT:
+            return state.update(
+                newState => newState.set('products', goods(newState, action))
+            );
+        case GOODS_SETCOUNTNUMBER:
+            return state.update(
+                newState => newState.set('products', goods(newState, action))
+            );
+        case CART_RECEIVEPRODUCTS:
+            return state.update(
+                newState => newState.set('products', goods(newState, action))
+            );
+        default:
+            return state;
+    }
+};

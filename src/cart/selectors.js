@@ -24,7 +24,7 @@ export const getAllSelector = createSelector(
             data,
             totalPrice,
             totalNumber
-        }
+        };
     }
 );
 
@@ -36,7 +36,7 @@ export function mapStateToProps(state) {
     };
 }
 
-export function mapDispatchToProps(dispatch, ownProps) {
+export function mapDispatchToProps(dispatch) {
     return {
         getAll() {
             dispatch(getAll());
@@ -46,12 +46,12 @@ export function mapDispatchToProps(dispatch, ownProps) {
             dispatch(deleteProduct(productId, productCount));
             dispatch(calculate());
         },
-        goBack(){
+        goBack() {
             dispatch(goBack());
         },
-        setNumber(productId, count, index){
+        setNumber(productId, count, index) {
             dispatch(setNumber(productId, count, index));
             dispatch(calculate());
         }
-    }
+    };
 }
